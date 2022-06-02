@@ -1,0 +1,40 @@
+
+# Copyright IBM Corp. All Rights Reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+version: '2'
+
+volumes:
+  ca.vice.com:
+
+networks:
+  byfn:
+    external:
+      name: vice-network
+
+services:
+  
+  ca.vice.com:
+    image: hyperledger/fabric-ca
+    environment:
+      - FABRIC_CA_SERVER_TLS_ENABLED=true
+      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+      - FABRIC_CA_SERVER_CA_NAME=ca.vice.com
+      - FABRIC_CA_SERVER_PORT=8054
+      - TZ=Asia/Seoul # 컨테이너 타임존 설정
+      # 만약 crypto-config로 미리 인증서를 발급안하면 밑의 두 줄은 주석처리한다.
+      - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.vice.com-cert.pem
+      - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/${BYFN_CA2_PRIVATE_KEY}
+    ports:
+      - "8054:8054"
+    command: sh -c 'fabric-ca-server start -b admin:adminpw'
+    volumes:
+      - ../fabric-ca-server/ca.vice.com:/etc/hyperledger/fabric-ca-server
+      - ../crypto-config/peerOrganizations/vice.com/ca/:/etc/hyperledger/fabric-ca-server-config
+    container_name: ca.vice.com
+    networks:
+      - byfn
+
+ 

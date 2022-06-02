@@ -1,0 +1,201 @@
+---
+name: first-network
+version: 1.0.0
+client:
+  organization: Nsmarts
+  connection:
+    timeout:
+      peer:
+        endorser: '300'
+
+channels:
+  mychannel:
+    orderers:
+      - orderer.example.com
+    peers:
+      peer0.nsmarts.co.kr:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      peer1.nsmarts.co.kr:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      peer0.vice.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      peer1.vice.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      peer0.viceKR.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      peer1.viceKR.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+
+organizations:
+  Nsmarts:
+    mspid: NsmartsMSP
+    peers:
+    - peer0.nsmarts.co.kr
+    - peer1.nsmarts.co.kr
+    certificateAuthorities:
+    - ca.nsmarts.co.kr
+    adminPrivateKey:
+      path: /home/ubuntu/go/src/github.com/hyperledger/fabric-network/vice-network/crypto-config/peerOrganizations/nsmarts.co.kr/users/Admin@nsmarts.co.kr/msp/keystore/3b58f43db84a8e456107bce26fda512d0cdf55242a5d7eb231d5a52835bc8a81_sk
+    signedCert:
+      path: /home/ubuntu/go/src/github.com/hyperledger/fabric-network/vice-network/crypto-config/peerOrganizations/nsmarts.co.kr/users/Admin@nsmarts.co.kr/msp/signcerts/Admin@nsmarts.co.kr-cert.pem
+  Vice:
+    mspid: ViceMSP
+    peers:
+    - peer0.vice.com
+    - peer1.vice.com
+    certificateAuthorities:
+    - ca.vice.com
+    adminPrivateKey:
+      path: /home/ubuntu/go/src/github.com/hyperledger/fabric-network/vice-network/crypto-config/peerOrganizations/vice.com/users/Admin@vice.com/msp/keystore/f30838b83b60e4f3df002828611f5691e6e6c19c9dc121d1c164dc6182d5c0b3_sk
+    signedCert:
+      path: /home/ubuntu/go/src/github.com/hyperledger/fabric-network/vice-network/crypto-config/peerOrganizations/vice.com/users/Admin@vice.com/msp/signcerts/Admin@vice.com-cert.pem
+  
+  ViceKR:
+    mspid: ViceKRMSP
+    peers:
+    - peer0.viceKR.com
+    - peer1.viceKR.com
+    certificateAuthorities:
+    - ca.viceKR.com
+    adminPrivateKey:
+      path: /home/ubuntu/go/src/github.com/hyperledger/fabric-network/vice-network/crypto-config/peerOrganizations/viceKR.com/users/Admin@viceKR.com/msp/keystore/8c48a2e63714f3c1895854022fe16a0897b97249f0c9d3ea94b326d110f1676b_sk
+    signedCert:
+      path: /home/ubuntu/go/src/github.com/hyperledger/fabric-network/vice-network/crypto-config/peerOrganizations/viceKR.com/users/Admin@viceKR.com/msp/signcerts/Admin@viceKR.com-cert.pem
+
+
+orderers:
+  orderer.example.com:
+    url: grpcs://localhost:7050
+    grpcOptions:
+      ssl-target-name-override: orderer.example.com
+    tlsCACerts:
+      path: /home/ubuntu/go/src/github.com/hyperledger/fabric-network/vice-network/crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+
+  orderer2.example.com:
+    url: grpcs://localhost:8050
+    grpcOptions:
+      ssl-target-name-override: orderer2.example.com
+    tlsCACerts:
+      path: /home/ubuntu/go/src/github.com/hyperledger/fabric-network/vice-network/crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+
+  orderer3.example.com:
+    url: grpcs://localhost:9050
+    grpcOptions:
+      ssl-target-name-override: orderer3.example.com
+    tlsCACerts:
+      path: /home/ubuntu/go/src/github.com/hyperledger/fabric-network/vice-network/crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+
+  orderer4.example.com:
+    url: grpcs://localhost:10050
+    grpcOptions:
+      ssl-target-name-override: orderer4.example.com
+    tlsCACerts:
+      path: /home/ubuntu/go/src/github.com/hyperledger/fabric-network/vice-network/crypto-config/ordererOrganizations/example.com/orderers/orderer4.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+
+  orderer5.example.com:
+    url: grpcs://localhost:11050
+    grpcOptions:
+      ssl-target-name-override: orderer5.example.com
+    tlsCACerts:
+      path: /home/ubuntu/go/src/github.com/hyperledger/fabric-network/vice-network/crypto-config/ordererOrganizations/example.com/orderers/orderer5.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+
+peers:
+  peer0.nsmarts.co.kr:
+    url: grpcs://localhost:7051
+    tlsCACerts:
+      path: /home/ubuntu/go/src/github.com/hyperledger/fabric-network/vice-network/crypto-config/peerOrganizations/nsmarts.co.kr/peers/peer0.nsmarts.co.kr/msp/tlscacerts/tlsca.nsmarts.co.kr-cert.pem
+    grpcOptions:
+      ssl-target-name-override: peer0.nsmarts.co.kr
+      hostnameOverride: peer0.nsmarts.co.kr
+
+  peer1.nsmarts.co.kr:
+    url: grpcs://localhost:8051
+    tlsCACerts:
+      path: /home/ubuntu/go/src/github.com/hyperledger/fabric-network/vice-network/crypto-config/peerOrganizations/nsmarts.co.kr/peers/peer1.nsmarts.co.kr/msp/tlscacerts/tlsca.nsmarts.co.kr-cert.pem
+    grpcOptions:
+      ssl-target-name-override: peer1.nsmarts.co.kr
+      hostnameOverride: peer1.nsmarts.co.kr
+
+  peer0.vice.com:
+    url: grpcs://localhost:9051
+    tlsCACerts:
+      path: /home/ubuntu/go/src/github.com/hyperledger/fabric-network/vice-network/crypto-config/peerOrganizations/vice.com/peers/peer0.vice.com/msp/tlscacerts/tlsca.vice.com-cert.pem
+    grpcOptions:
+      ssl-target-name-override: peer0.vice.com
+      hostnameOverride: peer0.vice.com
+
+  peer1.vice.com:
+    url: grpcs://localhost:10051
+    tlsCACerts:
+      path: /home/ubuntu/go/src/github.com/hyperledger/fabric-network/vice-network/crypto-config/peerOrganizations/vice.com/peers/peer1.vice.com/msp/tlscacerts/tlsca.vice.com-cert.pem
+    grpcOptions:
+      ssl-target-name-override: peer1.vice.com
+      hostnameOverride: peer1.vice.com
+
+  peer0.viceKR.com:
+    url: grpcs://localhost:11051
+    tlsCACerts:
+      path: /home/ubuntu/go/src/github.com/hyperledger/fabric-network/vice-network/crypto-config/peerOrganizations/viceKR.com/peers/peer0.viceKR.com/msp/tlscacerts/tlsca.viceKR.com-cert.pem
+    grpcOptions:
+      ssl-target-name-override: peer0.viceKR.com
+      hostnameOverride: peer0.viceKR.com
+
+  peer1.viceKR.com:
+    url: grpcs://localhost:12051
+    tlsCACerts:
+      path: /home/ubuntu/go/src/github.com/hyperledger/fabric-network/vice-network/crypto-config/peerOrganizations/viceKR.com/peers/peer1.viceKR.com/msp/tlscacerts/tlsca.viceKR.com-cert.pem
+    grpcOptions:
+      ssl-target-name-override: peer1.viceKR.com
+      hostnameOverride: peer1.viceKR.com
+
+certificateAuthorities:
+  ca.nsmarts.co.kr:
+    url: https://localhost:7054
+    httpOptions:
+      verify: false
+    tlsCACerts:
+      path: /home/ubuntu/go/src/github.com/hyperledger/fabric-network/vice-network/crypto-config/peerOrganizations/nsmarts.co.kr/ca/ca.nsmarts.co.kr-cert.pem
+    registrar:
+      - enrollId: admin
+        enrollSecret: adminpw
+    caName: ca.nsmarts.co.kr
+
+  ca.vice.com:
+    url: https://localhost:8054
+    httpOptions:
+      verify: false
+    tlsCACerts:
+      path: /home/ubuntu/go/src/github.com/hyperledger/fabric-network/vice-network/crypto-config/peerOrganizations/vice.com/ca/ca.vice.com-cert.pem
+    registrar:
+      - enrollId: admin
+        enrollSecret: adminpw
+    caName: ca.vice.com
+
+  ca.viceRK.com:
+    url: https://localhost:9054
+    httpOptions:
+      verify: false
+    tlsCACerts:
+      path: /home/ubuntu/go/src/github.com/hyperledger/fabric-network/vice-network/crypto-config/peerOrganizations/viceRK.com/ca/ca.viceRK.com-cert.pem
+    registrar:
+      - enrollId: admin
+        enrollSecret: adminpw
+    caName: ca.viceRK.com

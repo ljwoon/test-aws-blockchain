@@ -1,0 +1,199 @@
+# Copyright IBM Corp. All Rights Reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+version: '2'
+
+services:
+
+  orderer.example.com:
+    container_name: orderer.example.com
+    extends:
+      file: peer-base.yaml
+      service: orderer-base
+    volumes:
+        - ../channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+        - ../crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/msp:/var/hyperledger/orderer/msp
+        - ../crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/:/var/hyperledger/orderer/tls
+        - orderer.example.com:/var/hyperledger/production/orderer
+    ports:
+      - 7050:7050
+
+  peer0.nsmarts.co.kr:
+    container_name: peer0.nsmarts.co.kr
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer0.nsmarts.co.kr
+      - CORE_PEER_ADDRESS=peer0.nsmarts.co.kr:7051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:7051
+      - CORE_PEER_CHAINCODEADDRESS=peer0.nsmarts.co.kr:7052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.nsmarts.co.kr:8051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.nsmarts.co.kr:7051
+      - CORE_PEER_LOCALMSPID=NsmartsMSP
+    volumes:
+        - /var/run/docker.sock:/host/var/run/docker.sock
+        - ../crypto-config/peerOrganizations/nsmarts.co.kr/peers/peer0.nsmarts.co.kr/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/nsmarts.co.kr/peers/peer0.nsmarts.co.kr/tls:/etc/hyperledger/fabric/tls
+        - peer0.nsmarts.co.kr:/var/hyperledger/production
+    ports:
+      - 7051:7051
+
+  peer1.nsmarts.co.kr:
+    container_name: peer1.nsmarts.co.kr
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer1.nsmarts.co.kr
+      - CORE_PEER_ADDRESS=peer1.nsmarts.co.kr:8051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:8051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.nsmarts.co.kr:8052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:8052
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.nsmarts.co.kr:8051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.nsmarts.co.kr:7051
+      - CORE_PEER_LOCALMSPID=NsmartsMSP
+    volumes:
+        - /var/run/docker.sock:/host/var/run/docker.sock
+        - ../crypto-config/peerOrganizations/nsmarts.co.kr/peers/peer1.nsmarts.co.kr/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/nsmarts.co.kr/peers/peer1.nsmarts.co.kr/tls:/etc/hyperledger/fabric/tls
+        - peer1.nsmarts.co.kr:/var/hyperledger/production
+
+    ports:
+      - 8051:8051
+
+  peer0.vice.com:
+    container_name: peer0.vice.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer0.vice.com
+      - CORE_PEER_ADDRESS=peer0.vice.com:9051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:9051
+      - CORE_PEER_CHAINCODEADDRESS=peer0.vice.com:9052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:9052
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.vice.com:9051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.vice.com:10051
+      - CORE_PEER_LOCALMSPID=ViceMSP
+    volumes:
+        - /var/run/docker.sock:/host/var/run/docker.sock
+        - ../crypto-config/peerOrganizations/vice.com/peers/peer0.vice.com/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/vice.com/peers/peer0.vice.com/tls:/etc/hyperledger/fabric/tls
+        - peer0.vice.com:/var/hyperledger/production
+    ports:
+      - 9051:9051
+
+  peer1.vice.com:
+    container_name: peer1.vice.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer1.vice.com
+      - CORE_PEER_ADDRESS=peer1.vice.com:10051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:10051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.vice.com:10052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:10052
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.vice.com:10051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.vice.com:9051
+      - CORE_PEER_LOCALMSPID=ViceMSP
+    volumes:
+        - /var/run/docker.sock:/host/var/run/docker.sock
+        - ../crypto-config/peerOrganizations/vice.com/peers/peer1.vice.com/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/vice.com/peers/peer1.vice.com/tls:/etc/hyperledger/fabric/tls
+        - peer1.vice.com:/var/hyperledger/production
+    ports:
+      - 10051:10051
+
+  peer0.viceKR.com:
+    container_name: peer0.viceKR.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer0.viceKR.com
+      - CORE_PEER_ADDRESS=peer0.viceKR.com:11051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:11051
+      - CORE_PEER_CHAINCODEADDRESS=peer0.viceKR.com:11052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:11052
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.viceKR.com:11051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.viceKR.com:12051
+      - CORE_PEER_LOCALMSPID=ViceKRMSP
+    volumes:
+        - /var/run/docker.sock:/host/var/run/docker.sock
+        - ../crypto-config/peerOrganizations/viceKR.com/peers/peer0.viceKR.com/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/viceKR.com/peers/peer0.viceKR.com/tls:/etc/hyperledger/fabric/tls
+        - peer0.viceKR.com:/var/hyperledger/production
+    ports:
+      - 11051:11051
+
+  peer1.viceKR.com:
+    container_name: peer1.viceKR.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer1.viceKR.com
+      - CORE_PEER_ADDRESS=peer1.viceKR.com:12051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:12051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.viceKR.com:12052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:12052
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.viceKR.com:12051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.viceKR.com:11051
+      - CORE_PEER_LOCALMSPID=ViceKRMSP
+    volumes:
+        - /var/run/docker.sock:/host/var/run/docker.sock
+        - ../crypto-config/peerOrganizations/viceKR.com/peers/peer1.viceKR.com/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/viceKR.com/peers/peer1.viceKR.com/tls:/etc/hyperledger/fabric/tls
+        - peer1.viceKR.com:/var/hyperledger/production
+    ports:
+      - 12051:12051
+
+
+  peer0.org4.example.com:
+    container_name: peer0.org4.example.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer0.org4.example.com
+      - CORE_PEER_ADDRESS=peer0.org4.example.com:13051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:13051
+      - CORE_PEER_CHAINCODEADDRESS=peer0.org4.example.com:13052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:13052
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org4.example.com:13051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.org4.example.com:14051
+      - CORE_PEER_LOCALMSPID=Org4MSP
+    volumes:
+        - /var/run/docker.sock:/host/var/run/docker.sock
+        - ../crypto-config/peerOrganizations/org4.example.com/peers/peer0.org4.example.com/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/org4.example.com/peers/peer0.org4.example.com/tls:/etc/hyperledger/fabric/tls
+        - peer0.org4.example.com:/var/hyperledger/production
+    ports:
+      - 13051:13051
+
+  peer1.org4.example.com:
+    container_name: peer1.org4.example.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer1.org4.example.com
+      - CORE_PEER_ADDRESS=peer1.org4.example.com:14051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:14051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.org4.example.com:14052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:14052
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.org4.example.com:14051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org4.example.com:13051
+      - CORE_PEER_LOCALMSPID=Org4MSP
+    volumes:
+        - /var/run/docker.sock:/host/var/run/docker.sock
+        - ../crypto-config/peerOrganizations/org4.example.com/peers/peer1.org4.example.com/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/org4.example.com/peers/peer1.org4.example.com/tls:/etc/hyperledger/fabric/tls
+        - peer1.org4.example.com:/var/hyperledger/production
+    ports:
+      - 14051:14051

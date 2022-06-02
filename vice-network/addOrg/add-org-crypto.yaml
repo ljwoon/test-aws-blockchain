@@ -1,0 +1,25 @@
+# Copyright IBM Corp. All Rights Reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+# ---------------------------------------------------------------------------
+# "PeerOrgs" - Definition of organizations managing peer nodes
+# ---------------------------------------------------------------------------
+PeerOrgs:
+  # ---------------------------------------------------------------------------
+  # Org4
+  # ---------------------------------------------------------------------------
+  - Name: Org4
+    Domain: org4.example.com
+    EnableNodeOUs: true
+    CA:
+      Hostname: ca # implicitly ca.nsmarts.co.kr
+      Country: KR
+      Province: "Seoul"
+      Locality: Seocho-gu
+      OrganizationalUnit: nsmart-develope
+    Template:
+      Count: 2
+    Users:
+      Count: 100

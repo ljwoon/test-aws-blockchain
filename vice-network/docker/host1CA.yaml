@@ -1,0 +1,40 @@
+
+# Copyright IBM Corp. All Rights Reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+version: '2'
+
+volumes:
+  ca.nsmarts.co.kr:
+
+networks:
+  byfn:
+    external:
+      name: vice-network
+
+services:
+  
+  ca.nsmarts.co.kr.com:
+    image: hyperledger/fabric-ca
+    environment:
+      - FABRIC_CA_SERVER_TLS_ENABLED=true
+      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+      - FABRIC_CA_SERVER_CA_NAME=ca.nsmarts.co.kr
+      - FABRIC_CA_SERVER_PORT=7054
+      - TZ=Asia/Seoul # 컨테이너 타임존 설정
+      # 만약 crypto-config로 미리 인증서를 발급안하면 밑의 두 줄은 주석처리한다.
+      - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.nsmarts.co.kr-cert.pem
+      - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/${BYFN_CA1_PRIVATE_KEY}
+    ports:
+      - "7054:7054"
+    command: sh -c 'fabric-ca-server start -b admin:adminpw'
+    volumes:
+      - ../fabric-ca-server/ca.nsmarts.co.kr:/etc/hyperledger/fabric-ca-server
+      - ../crypto-config/peerOrganizations/nsmarts.co.kr/ca/:/etc/hyperledger/fabric-ca-server-config
+    container_name: ca.nsmarts.co.kr
+    networks:
+      - byfn
+
+ 

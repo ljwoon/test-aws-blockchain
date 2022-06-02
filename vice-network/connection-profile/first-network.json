@@ -1,0 +1,103 @@
+{
+	"name": "vice-network",
+	"version": "1.0.0",
+	"client": {
+		"tlsEnable": true,
+		"adminCredential": {
+			"id": "exploreradmin",
+			"password": "exploreradminpw"
+		},
+		"enableAuthentication": true,
+		"organization": "NsmartsMSP",
+		"connection": {
+			"timeout": {
+				"peer": {
+					"endorser": "300"
+				},
+				"orderer": "300"
+			}
+		}
+	},
+	"channels": {
+		"mychannel": {
+			"peers": {
+				"peer0.nsmarts.co.kr": {},
+				"peer1.nsmarts.co.kr": {},
+				"peer0.vice.com": {},
+				"peer1.vice.com": {},
+				"peer0.viceKR.com": {},
+				"peer1.viceKR.com": {}
+			}
+		}
+	},
+	"organizations": {
+		"NsmartsMSP": {
+			"mspid": "NsmartsMSP",
+			"adminPrivateKey": {
+				"path": "/tmp/crypto/peerOrganizations/nsmarts.co.kr/users/Admin@nsmarts.co.kr/msp/keystore/2e9a809b31dfc4a24c17053d7ed69cb8a13711715336f7edf31738c824c1cc47_sk"
+			},
+			"peers": ["peer0.nsmarts.co.kr","peer1.nsmarts.co.kr"],
+			"signedCert": {
+				"path": "/tmp/crypto/peerOrganizations/nsmarts.co.kr/users/Admin@nsmarts.co.kr/msp/signcerts/Admin@nsmarts.co.kr-cert.pem"
+			}
+		},
+		"ViceMSP": {
+			"mspid": "ViceMSP",
+			"adminPrivateKey": {
+				"path": "/tmp/crypto/peerOrganizations/vice.com/users/Admin@vice.com/msp/keystore/e27eb68ac5fdaa3a78d6ad37fb689c1692bc05924c5d93b8b6e2a922966de690_sk"
+			},
+			"peers": ["peer0.vice.com","peer1.vice.com"],
+			"signedCert": {
+				"path": "/tmp/crypto/peerOrganizations/vice.com/users/Admin@vice.com/msp/signcerts/Admin@vice.com-cert.pem"
+			}
+		},
+		"ViceKRMSP": {
+			"mspid": "ViceKRMSP",
+			"adminPrivateKey": {
+				"path": "/tmp/crypto/peerOrganizations/viceKR.com/users/Admin@viceKR.com/msp/keystore/070963cff45e83d263c38cfd028a211478376b3653aadf3484aaec780dce62e9_sk"
+			},
+			"peers": ["peer0.viceKR.com","peer1.viceKR.com"],
+			"signedCert": {
+				"path": "/tmp/crypto/peerOrganizations/viceKR.com/users/Admin@viceKR.com/msp/signcerts/Admin@viceKR.com-cert.pem"
+			}
+		}
+	},
+	"peers": {
+		"peer0.nsmarts.co.kr": {
+			"tlsCACerts": {
+				"path": "/tmp/crypto/peerOrganizations/nsmarts.co.kr/peers/peer0.nsmarts.co.kr/tls/ca.crt"
+			},
+			"url": "grpcs://peer0.nsmarts.co.kr:7051"
+		},
+		"peer1.nsmarts.co.kr": {
+            "tlsCACerts": {
+                "path": "/tmp/crypto/peerOrganizations/nsmarts.co.kr/peers/peer1.nsmarts.co.kr/tls/ca.crt"
+            },
+            "url": "grpcs://peer1.nsmarts.co.kr:8051"
+        },
+		"peer0.vice.com": {
+			"tlsCACerts": {
+				"path": "/tmp/crypto/peerOrganizations/vice.com/peers/peer0.vice.com/tls/ca.crt"
+			},
+			"url": "grpcs://peer0.vice.com:9051"
+		},
+		"peer1.vice.com": {
+            "tlsCACerts": {
+                "path": "/tmp/crypto/peerOrganizations/vice.com/peers/peer1.vice.com/tls/ca.crt"
+            },
+            "url": "grpcs://peer1.vice.com:10051"
+        },
+		"peer0.viceKR.com": {
+			"tlsCACerts": {
+				"path": "/tmp/crypto/peerOrganizations/viceKR.com/peers/peer0.viceKR.com/tls/ca.crt"
+			},
+			"url": "grpcs://peer0.viceKR.com:11051"
+		},
+		"peer1.viceKR.com": {
+            "tlsCACerts": {
+                "path": "/tmp/crypto/peerOrganizations/viceKR.com/peers/peer1.viceKR.com/tls/ca.crt"
+            },
+            "url": "grpcs://peer1.viceKR.com:12051"
+        }
+	}
+}

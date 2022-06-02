@@ -1,0 +1,5 @@
+1_addOrdererCrypto.sh
+
+cd ../docker
+docker-compose -f addOrdererNodeCli.yaml up -d
+
