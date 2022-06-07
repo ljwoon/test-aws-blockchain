@@ -1,11 +1,7 @@
 [
     {
         "name": "contractPrivate",
-<<<<<<< HEAD
-        "policy": "OR('Org1MSP.peer')",
-=======
         "policy": "OR('NsmartsMSP.peer','ViceMSP.peer')",
->>>>>>> 4e408226ebb924a7158c7e9e7698eae4f30da768
         "requiredPeerCount": 0,
         "maxPeerCount": 3,
         "blockToLive": 1000000
