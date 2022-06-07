@@ -56,7 +56,7 @@ sleep 5
 
 
 echo "mychannel에 체인코드 contract 인스턴스 화"
-docker exec cli peer chaincode instantiate -o orderer.example.com:7050 --tls true --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n contract -v 1.0 -c '{"Args":[]}' -P "OutOf (2, 'NsmartsMSP.peer','ViceMSP.peer','ViceKRMSP.peer')"
+docker exec cli peer chaincode instantiate -o orderer.example.com:7050 --tls true --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n contract -v 1.0 -c '{"Args":[]}' -P "OR ('NsmartsMSP.peer','ViceMSP.peer','ViceKRMSP.peer')" --collections-config /opt/gopath/src/github.com/chaincode/contract/go/collections_config.json
 sleep 5
 
 # echo "mychannel 체인코드 contract 인스턴스 화"
@@ -136,7 +136,7 @@ sleep 5
 
 
 echo "mychannel에 체인코드 document 인스턴스 화"
-docker exec cli peer chaincode instantiate -o orderer.example.com:7050 --tls true --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n document -v 1.0 -c '{"Args":[]}' -P "OutOf (2, 'NsmartsMSP.peer','ViceMSP.peer','ViceKRMSP.peer')"
+docker exec cli peer chaincode instantiate -o orderer.example.com:7050 --tls true --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n document -v 1.0 -c '{"Args":[]}' -P "OR ('NsmartsMSP.peer','ViceMSP.peer','ViceKRMSP.peer')"
 sleep 5
 
 # echo "mychannel 체인코드 document 인스턴스 화"
@@ -185,7 +185,7 @@ echo "체인코드 document 쿼리"
 # from peer1.viceKR
 docker exec -e CORE_PEER_ADDRESS=peer1.viceKR.com:12051 -e CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/viceKR.com/peers/peer1.viceKR.com/tls/ca.crt -e CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/viceKR.com/users/Admin@viceKR.com/msp -e CORE_PEER_LOCALMSPID=ViceKRMSP cli peer chaincode query -n document -C mychannel -c '{"Args":["queryTest","a"]}'
 sleep 5
-
+ 
 # # 체인코드 leave----------------------------------------------------------------
 
 echo "체인코드 leave peer0.nsmarts에 설치"
@@ -215,7 +215,7 @@ sleep 5
 
 
 echo "mychannel에 체인코드 leave 인스턴스 화"
-docker exec cli peer chaincode instantiate -o orderer.example.com:7050 --tls true --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n leave -v 1.0 -c '{"Args":[]}' -P "OutOf (2, 'NsmartsMSP.peer','ViceMSP.peer','ViceKRMSP.peer')"
+docker exec cli peer chaincode instantiate -o orderer.example.com:7050 --tls true --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n leave -v 1.0 -c '{"Args":[]}' -P "OR ('NsmartsMSP.peer','ViceMSP.peer','ViceKRMSP.peer')"
 sleep 5
 
 # echo "mychannel 체인코드 company 인스턴스 화"

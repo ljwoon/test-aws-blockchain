@@ -1,11 +1,10 @@
-
-
 package main
 
 import (
 	// "bytes"
 	"encoding/json"
 	"fmt"
+
 	// "strconv"
 
 	"github.com/hyperledger/fabric/core/chaincode/shim"
@@ -18,18 +17,18 @@ type SmartContract struct {
 
 // Define the car structure, with 4 properties.  Structure tags are used by encoding/json library
 type LeaveRequest struct {
-	Id						string `json:"id"`
-	Requestor   			string `json:"requestor"`
-	ApproverId  			string `json:"approverId"`
-	Approver  				string `json:"approver"`
-	LeaveType 				string `json:"leaveType"`
-	LeaveDay 				string `json:"leaveDay"`
-	LeaveDuration 			string `json:"leaveDuration"`
-	LeaveStartDate 			string `json:"leaveStartDate"`
-	LeaveEndDate 			string `json:"leaveEndDate"`
-	LeaveReason 			string `json:"leaveReason"`
-	Status 					string `json:"status"`
-	Year 					string `json:"year"`
+	Id             string `json:"id"`
+	Requestor      string `json:"requestor"`
+	ApproverId     string `json:"approverId"`
+	Approver       string `json:"approver"`
+	LeaveType      string `json:"leaveType"`
+	LeaveDay       string `json:"leaveDay"`
+	LeaveDuration  string `json:"leaveDuration"`
+	LeaveStartDate string `json:"leaveStartDate"`
+	LeaveEndDate   string `json:"leaveEndDate"`
+	LeaveReason    string `json:"leaveReason"`
+	Status         string `json:"status"`
+	Year           string `json:"year"`
 }
 
 /*
@@ -51,11 +50,11 @@ func (s *SmartContract) Invoke(APIstub shim.ChaincodeStubInterface) sc.Response 
 	// Route to the appropriate handler function to interact with the ledger appropriately
 	if function == "queryTest" {
 		return s.queryTest(APIstub, args)
-	}  else if function == "createLeaveRequest" {
+	} else if function == "createLeaveRequest" {
 		return s.createLeaveRequest(APIstub, args)
-	}  else if function == "selectLeaveRequest" {
+	} else if function == "selectLeaveRequest" {
 		return s.selectLeaveRequest(APIstub, args)
-	} 
+	}
 	// else if function == "initLedger" {
 	// 	return s.initLedger(APIstub)
 	// }
@@ -72,9 +71,6 @@ func (s *SmartContract) queryTest(APIstub shim.ChaincodeStubInterface, args []st
 	leaveRequestAsBytes, _ := APIstub.GetState(args[0])
 	return shim.Success(leaveRequestAsBytes)
 }
-
-
-
 
 // 휴가 요청 생성
 func (s *SmartContract) createLeaveRequest(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
@@ -95,7 +91,6 @@ func (s *SmartContract) createLeaveRequest(APIstub shim.ChaincodeStubInterface, 
 	return shim.Success(nil)
 }
 
-
 // 휴가 상세 조회
 func (s *SmartContract) selectLeaveRequest(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
 	// 인자값이 하나이상이면 에러
@@ -112,8 +107,6 @@ func (s *SmartContract) selectLeaveRequest(APIstub shim.ChaincodeStubInterface, 
 
 	return shim.Success(resultsIterator)
 }
-
-
 
 // The main function is only relevant in unit test mode. Only included here for completeness.
 func main() {

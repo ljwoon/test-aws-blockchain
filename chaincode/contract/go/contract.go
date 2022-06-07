@@ -16,60 +16,26 @@ import (
 type SmartContract struct {
 }
 
-// type Sender struct {
-// 	Id			string	`json:"id"`
-// 	Email		string	`json:"email"`
-// }
-
-// type Receiver struct {
-// 	Id			string	`json:"id"`
-// 	Email		string	`json:"email"`
-// }
-
-// type Tool struct {
-// 	Type	string `json:"type"`
-// 	Color	string `json:"color"`
-// 	Width	int `json:"width"`
-// }
-
-// type DrawingEvent struct {
-// 	Points		[]int	`json:"points"`
-// 	Tool		Tool	`json:"tool"`
-// 	SignedTime	string	`json:"signedTime"`
-// }
-
-// type SenderSign struct {
-// 	PageNum			int	`json:"pageNum"`
-// 	DrawingEvent	[]DrawingEvent	`json:"drawingEvent"`
-// 	SignedTime		string	`json:"signedTime"`
-// }
-
-// type ReceiverSign struct {
-// 	PageNum			int	`json:"pageNum"`
-// 	DrawingEvent	[]DrawingEvent	`json:"drawingEvent"`
-// 	SignedTime		string	`json:"signedTime"`
-// }
-
 // Define the car structure, with 16 properties.  Structure tags are used by encoding/json library
 type Contract struct {
 	// Id               string `json:"id"`
-	CompanyId        string `json:"companyId"`
-	Title            string `json:"title"`
-	Description      string `json:"description"`
-	Sender           string `json:"sender"`
-	Receiver         string `json:"receiver"`
-	Date             string `json:"date"`
-	OriginalFileName string `json:"originalFileName"`
-	FileName         string `json:"fileName"`
-	FileSize         string `json:"fileSize"`
-	SaveKey          string `json:"saveKey"`
-	Hash             string `json:"hash"`
-	Status           string `json:"status"`
-	RejectReason     string `json:"rejectReason"`
-	SenderSign       string `json:"senderSign"`
-	ReceiverSign     string `json:"receiverSign"`
-	SenderHash       string `json:"senderHash"`
-	ReceiverHash     string `json:"receiverHash"`
+	CompanyId        	string `json:"companyId"`
+	Title            	string `json:"title"`
+	Description      	string `json:"description"`
+	Sender           	string `json:"sender"`
+	Receiver         	string `json:"receiver"`
+	Date             	string `json:"date"`
+	OriginalFileName 	string `json:"originalFileName"`
+	FileName         	string `json:"fileName"`
+	FileSize         	string `json:"fileSize"`
+	SaveKey          	string `json:"saveKey"`
+	Hash             	string `json:"hash"`
+	Status           	string `json:"status"`
+	RejectReason     	string `json:"rejectReason"`
+	SenderSign       	string `json:"senderSign"`
+	ReceiverSign     	string `json:"receiverSign"`
+	SenderHash       	string `json:"senderHash"`
+	ReceiverHash     	string `json:"receiverHash"`
 }
 
 /*
@@ -102,9 +68,6 @@ func (s *SmartContract) Invoke(APIstub shim.ChaincodeStubInterface) sc.Response 
 	} else if function == "rejectContract" {
 		return s.rejectContract(APIstub, args)
 	}
-	// else if function == "initLedger" {
-	// 	return s.initLedger(APIstub)
-	// }
 
 	return shim.Error("Invalid Smart Contract function name.")
 }
@@ -127,19 +90,28 @@ func (s *SmartContract) createContract(APIstub shim.ChaincodeStubInterface, args
 	if len(args) != 14 {
 		return shim.Error("Incorrect number of arguments. Expecting 14")
 	}
+	///////////////////////////////////////////////////////////////////////////////////////
+	/*     원본 코드                                                                 */ 
+	// var contract = Contract{CompanyId: args[1], Title: args[2], Description: args[3], Sender: args[4], Receiver: args[5], Date: args[6], OriginalFileName: args[7], FileName: args[8], FileSize: args[9], SaveKey: args[10], Hash: args[11], Status: args[12], RejectReason: args[13]}
 
-	var contract = Contract{CompanyId: args[1], Title: args[2], Description: args[3], Sender: args[4], Receiver: args[5], Date: args[6], OriginalFileName: args[7], FileName: args[8], FileSize: args[9], SaveKey: args[10], Hash: args[11], Status: args[12], RejectReason: args[13]}
+	// contractAsBytes, _ := json.Marshal(contract)
+	// APIstub.PutState(args[0], contractAsBytes)
+	///////////////////////////////////////////////////////////////////////////////////////	
 
-	// var company = Company{Company_name: args[1], My_name: args[2], Your_name: args[3]}
 
-	contractAsBytes, _ := json.Marshal(contract)
-	APIstub.PutState(args[0], contractAsBytes)
+	/////////////////////////////////////////////////////////////////////////////////////////
+	/*     private data 적용                                                                */ 
+	var privateContract = Contract{CompanyId: args[1], Title: args[2], Description: args[3], Sender: args[4], Receiver: args[5], Date: args[6], OriginalFileName: args[7], FileName: args[8], FileSize: args[9], SaveKey: args[10], Hash: args[11], Status: args[12], RejectReason: args[13]}
+
+	privateContractAsBytes, _ := json.Marshal(privateContract)
+	APIstub.PutPrivateData("contractPrivate", args[0], privateContractAsBytes)
+	///////////////////////////////////////////////////////////////////////////////////////
+
 
 	return shim.Success(nil)
 }
 
 // 보낸이 서명
-
 func (s *SmartContract) signSender(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
 
 	// fmt.Println("문서 _Id값:" + args)
@@ -148,25 +120,42 @@ func (s *SmartContract) signSender(APIstub shim.ChaincodeStubInterface, args []s
 		return shim.Error("Incorrect number of arguments. Expecting 4")
 	}
 
-	// var contract = Contract{SenderSign: args[1], Status: args[2], SenderHash: args[3]}
+	///////////////////////////////////////////////////////////////////////////////////////
+	/*     원본 코드                                                                 	 */ 
+	// contractAsBytes, _ := APIstub.GetState(args[0])
+	// contract := Contract{}
 
-	contractAsBytes, _ := APIstub.GetState(args[0])
-	contract := Contract{}
+	// json.Unmarshal(contractAsBytes, &contract)
+	// contract.SenderSign = args[1]
+	// contract.Status = args[2]
+	// contract.SenderHash = args[3]
 
-	json.Unmarshal(contractAsBytes, &contract)
-	contract.SenderSign = args[1]
-	contract.Status = args[2]
-	contract.SenderHash = args[3]
+	// contractAsBytes, _ = json.Marshal(contract)
 
-	contractAsBytes, _ = json.Marshal(contract)
+	// APIstub.PutState(args[0], contractAsBytes)
+	///////////////////////////////////////////////////////////////////////////////////////	
 
-	APIstub.PutState(args[0], contractAsBytes)
+	/////////////////////////////////////////////////////////////////////////////////////////
+	/*     private data 적용                                                                */ 
+	privateContractAsBytes, _ := APIstub.GetPrivateData("contractPrivate", args[0])
+	privateContract := Contract{}
+
+	json.Unmarshal(privateContractAsBytes, &privateContract)
+	privateContract.SenderSign = args[1]
+	privateContract.Status = args[2]
+	privateContract.SenderHash = args[3]
+
+	privateContractAsBytes, _ = json.Marshal(privateContract)
+
+	APIstub.PutPrivateData("contractPrivate", args[0], privateContractAsBytes)
+
+	///////////////////////////////////////////////////////////////////////////////////////
 
 	return shim.Success(nil)
 }
 
-// 받은이 서명
 
+// 받은이 서명
 func (s *SmartContract) signReceiver(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
 
 	// fmt.Println("문서 _Id값:" + args)
@@ -175,23 +164,40 @@ func (s *SmartContract) signReceiver(APIstub shim.ChaincodeStubInterface, args [
 		return shim.Error("Incorrect number of arguments. Expecting 4")
 	}
 
-	contractAsBytes, _ := APIstub.GetState(args[0])
-	contract := Contract{}
+	///////////////////////////////////////////////////////////////////////////////////////
+	/*     원본 코드                                                                 	 */ 
+	// contractAsBytes, _ := APIstub.GetState(args[0])
+	// contract := Contract{}
 
-	json.Unmarshal(contractAsBytes, &contract)
-	contract.ReceiverSign = args[1]
-	contract.Status = args[2]
-	contract.ReceiverHash = args[3]
+	// json.Unmarshal(contractAsBytes, &contract)
+	// contract.ReceiverSign = args[1]
+	// contract.Status = args[2]
+	// contract.ReceiverHash = args[3]
 
-	contractAsBytes, _ = json.Marshal(contract)
+	// contractAsBytes, _ = json.Marshal(contract)
 
-	APIstub.PutState(args[0], contractAsBytes)
+	// APIstub.PutState(args[0], contractAsBytes)
+	///////////////////////////////////////////////////////////////////////////////////////
+
+	/////////////////////////////////////////////////////////////////////////////////////////
+	/*     private data 적용                                                                */ 
+	privateContractAsBytes, _ := APIstub.GetPrivateData("contractPrivate", args[0])
+	privateContract := Contract{}
+
+	json.Unmarshal(privateContractAsBytes, &privateContract)
+	privateContract.ReceiverSign = args[1]
+	privateContract.Status = args[2]
+	privateContract.ReceiverHash = args[3]
+
+	privateContractAsBytes, _ = json.Marshal(privateContract)
+
+	APIstub.PutPrivateData("contractPrivate", args[0], privateContractAsBytes)
+	///////////////////////////////////////////////////////////////////////////////////////
 
 	return shim.Success(nil)
 }
 
 // 계약 거절
-
 func (s *SmartContract) rejectContract(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
 
 	// fmt.Println("문서 _Id값:" + args)
@@ -200,16 +206,34 @@ func (s *SmartContract) rejectContract(APIstub shim.ChaincodeStubInterface, args
 		return shim.Error("Incorrect number of arguments. Expecting 3")
 	}
 
-	contractAsBytes, _ := APIstub.GetState(args[0])
-	contract := Contract{}
+	///////////////////////////////////////////////////////////////////////////////////////
+	/*     원본 코드                                                                 	 */ 
+	// contractAsBytes, _ := APIstub.GetState(args[0])
+	// contract := Contract{}
 
-	json.Unmarshal(contractAsBytes, &contract)
-	contract.RejectReason = args[1]
-	contract.Status = args[2]
+	// json.Unmarshal(contractAsBytes, &contract)
+	// contract.RejectReason = args[1]
+	// contract.Status = args[2]
 
-	contractAsBytes, _ = json.Marshal(contract)
+	// contractAsBytes, _ = json.Marshal(contract)
 
-	APIstub.PutState(args[0], contractAsBytes)
+	// APIstub.PutState(args[0], contractAsBytes)
+	///////////////////////////////////////////////////////////////////////////////////////
+
+	/////////////////////////////////////////////////////////////////////////////////////////
+	/*     private data 적용                                                                */ 
+	privateContractAsBytes, _ := APIstub.GetPrivateData("contractPrivate", args[0])
+	privateContract := Contract{}
+
+	json.Unmarshal(privateContractAsBytes, &privateContract)
+	privateContract.RejectReason = args[1]
+	privateContract.Status = args[2]
+
+	privateContractAsBytes, _ = json.Marshal(privateContract)
+
+	APIstub.PutPrivateData("contractPrivate", args[0], privateContractAsBytes)
+	/////////////////////////////////////////////////////////////////////////////////////////
+
 
 	return shim.Success(nil)
 }

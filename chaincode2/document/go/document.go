@@ -17,23 +17,23 @@ type SmartContract struct {
 }
 
 // Define the car structure, with 4 properties.  Structure tags are used by encoding/json library
-type LeaveRequest struct {
+type Document struct {
 	Id						string `json:"id"`
-	Requestor   			string `json:"requestor"`
-	ApproverId  			string `json:"approverId"`
-	Approver  				string `json:"approver"`
-	LeaveType 				string `json:"leaveType"`
-	LeaveDay 				string `json:"leaveDay"`
-	LeaveDuration 			string `json:"leaveDuration"`
-	LeaveStartDate 			string `json:"leaveStartDate"`
-	LeaveEndDate 			string `json:"leaveEndDate"`
-	LeaveReason 			string `json:"leaveReason"`
-	Status 					string `json:"status"`
-	Year 					string `json:"year"`
+	CompanyId   			string `json:"companyId"`
+	Uploader   				string `json:"uploader"`
+	Title  					string `json:"title"`
+	Content  				string `json:"content"`
+	OriginalFileName 		string `json:"originalFileName"`
+	FileName 				string `json:"fileName"`
+	FileSize 				string `json:"fileSize"`
+	SaveKey					string `json:"saveKey"`
+	Hash 					string `json:"hash"`
+	FileBuffer 				string `json:"fileBuffer"`
+
 }
 
 /*
- * The Init method is called when the Smart Contract "LeaveRequest" is instantiated by the blockchain network
+ * The Init method is called when the Smart Contract "Document" is instantiated by the blockchain network
  * Best practice is to have any Ledger initialization in separate function -- see initLedger()
  */
 func (s *SmartContract) Init(APIstub shim.ChaincodeStubInterface) sc.Response {
@@ -41,7 +41,7 @@ func (s *SmartContract) Init(APIstub shim.ChaincodeStubInterface) sc.Response {
 }
 
 /*
- * The Invoke method is called as a result of an application request to run the Smart Contract "LeaveRequest"
+ * The Invoke method is called as a result of an application request to run the Smart Contract "Document"
  * The calling application program has also specified the particular smart contract function to be called, with arguments
  */
 func (s *SmartContract) Invoke(APIstub shim.ChaincodeStubInterface) sc.Response {
@@ -51,10 +51,10 @@ func (s *SmartContract) Invoke(APIstub shim.ChaincodeStubInterface) sc.Response 
 	// Route to the appropriate handler function to interact with the ledger appropriately
 	if function == "queryTest" {
 		return s.queryTest(APIstub, args)
-	}  else if function == "createLeaveRequest" {
-		return s.createLeaveRequest(APIstub, args)
-	}  else if function == "selectLeaveRequest" {
-		return s.selectLeaveRequest(APIstub, args)
+	}  else if function == "createDocument" {
+		return s.createDocument(APIstub, args)
+	}  else if function == "selectDocument" {
+		return s.selectDocument(APIstub, args)
 	} 
 	// else if function == "initLedger" {
 	// 	return s.initLedger(APIstub)
@@ -69,35 +69,35 @@ func (s *SmartContract) queryTest(APIstub shim.ChaincodeStubInterface, args []st
 		return shim.Error("Incorrect number of arguments. Expecting 1")
 	}
 
-	leaveRequestAsBytes, _ := APIstub.GetState(args[0])
-	return shim.Success(leaveRequestAsBytes)
+	documentAsBytes, _ := APIstub.GetState(args[0])
+	return shim.Success(documentAsBytes)
 }
 
 
 
 
-// 휴가 요청 생성
-func (s *SmartContract) createLeaveRequest(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
+// 문서 업로드
+func (s *SmartContract) createDocument(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
 
-	// fmt.Println("휴가 요청 _Id값:" + args)
+	// fmt.Println("문서 _Id값:" + args)
 
-	if len(args) != 12 {
-		return shim.Error("Incorrect number of arguments. Expecting 12")
+	if len(args) != 11 {
+		return shim.Error("Incorrect number of arguments. Expecting 11")
 	}
 
-	var leaveRequest = LeaveRequest{Requestor: args[1], ApproverId: args[2], Approver: args[3], LeaveType: args[4], LeaveDay: args[5], LeaveDuration: args[6], LeaveStartDate: args[7], LeaveEndDate: args[8], LeaveReason: args[9], Status: args[10], Year: args[11]}
+	var document = Document{CompanyId: args[1], Uploader: args[2], Title: args[3], Content: args[4], OriginalFileName: args[5], FileName: args[6], FileSize: args[7], SaveKey: args[8], Hash: args[9], FileBuffer: args[10]}
 
 	// var company = Company{Company_name: args[1], My_name: args[2], Your_name: args[3]}
 
-	leaveRequestAsBytes, _ := json.Marshal(leaveRequest)
-	APIstub.PutState(args[0], leaveRequestAsBytes)
+	documentAsBytes, _ := json.Marshal(document)
+	APIstub.PutState(args[0], documentAsBytes)
 
 	return shim.Success(nil)
 }
 
 
-// 휴가 상세 조회
-func (s *SmartContract) selectLeaveRequest(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
+// 문서 상세 조회
+func (s *SmartContract) selectDocument(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
 	// 인자값이 하나이상이면 에러
 	if len(args) != 1 {
 		return shim.Error("Incorrect number of arguments. Expecting 1")
