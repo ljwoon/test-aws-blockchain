@@ -1,4 +1,4 @@
-sudo rm -rf crypto-config channel-artifacts 
+sudo rm -rf channel-artifacts 
 
 sudo rm -rf fabric-ca-server/ca.orderer.example.com/ca-cert.pem
 sudo rm -rf fabric-ca-server/ca.orderer.example.com/tls-cert.pem

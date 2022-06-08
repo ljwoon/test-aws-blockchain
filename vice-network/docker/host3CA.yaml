@@ -25,8 +25,8 @@ services:
       - FABRIC_CA_SERVER_PORT=9054
       - TZ=Asia/Seoul # 컨테이너 타임존 설정
       # 만약 crypto-config로 미리 인증서를 발급안하면 밑의 두 줄은 주석처리한다.
-      - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.viceKR.com-cert.pem
-      - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/${BYFN_CA3_PRIVATE_KEY}
+      # - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.viceKR.com-cert.pem
+      # - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/${BYFN_CA3_PRIVATE_KEY}
     ports:
       - "9054:9054"
     command: sh -c 'fabric-ca-server start -b admin:adminpw'
