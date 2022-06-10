@@ -1,7 +1,7 @@
 [
     {
         "name": "contractPrivate",
-        "policy": "OR('NsmartsMSP.peer','ViceMSP.peer')",
+        "policy": "OR('ViceMSP.peer', 'ViceKRMSP.peer', AND('NsmartsMSP.peer'))",
         "requiredPeerCount": 0,
         "maxPeerCount": 3,
         "blockToLive": 1000000
