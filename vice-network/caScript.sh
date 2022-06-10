@@ -359,6 +359,37 @@ mkdir -p ${PWD}/crypto-config/peerOrganizations/nsmarts.co.kr/ca
 sudo cp ${PWD}/crypto-config/peerOrganizations/nsmarts.co.kr/peers/peer1.nsmarts.co.kr/msp/cacerts/* ${PWD}/crypto-config/peerOrganizations/nsmarts.co.kr/ca/ca.nsmarts.co.kr-cert.pem
 
 
+echo "Registering peer2"
+set -x
+../bin/fabric-ca-client register --caname ca.nsmarts.co.kr --id.name org1peer2 --id.secret org1peer2pw --id.type peer --tls.certfiles ${PWD}/fabric-ca-server/ca.nsmarts.co.kr/tls-cert.pem
+{ set +x; } 2>/dev/null
+
+echo "Generating the peer2 msp"
+set -x
+../bin/fabric-ca-client enroll -u https://org1peer2:org1peer2pw@localhost:7054 --caname ca.nsmarts.co.kr -M ${PWD}/crypto-config/peerOrganizations/nsmarts.co.kr/peers/peer2.nsmarts.co.kr/msp --csr.hosts peer2.nsmarts.co.kr --tls.certfiles ${PWD}/fabric-ca-server/ca.nsmarts.co.kr/tls-cert.pem
+{ set +x; } 2>/dev/null
+
+sudo cp ${PWD}/crypto-config/peerOrganizations/nsmarts.co.kr/msp/config.yaml ${PWD}/crypto-config/peerOrganizations/nsmarts.co.kr/peers/peer2.nsmarts.co.kr/msp/config.yaml
+
+echo "Generating the peer2-tls certificates"
+set -x
+../bin/fabric-ca-client enroll -u https://org1peer2:org1peer2pw@localhost:7054 --caname ca.nsmarts.co.kr -M ${PWD}/crypto-config/peerOrganizations/nsmarts.co.kr/peers/peer2.nsmarts.co.kr/tls --enrollment.profile tls --csr.hosts peer2.nsmarts.co.kr --csr.hosts localhost --tls.certfiles ${PWD}/fabric-ca-server/ca.nsmarts.co.kr/tls-cert.pem
+{ set +x; } 2>/dev/null
+
+sudo cp ${PWD}/crypto-config/peerOrganizations/nsmarts.co.kr/peers/peer2.nsmarts.co.kr/tls/tlscacerts/* ${PWD}/crypto-config/peerOrganizations/nsmarts.co.kr/peers/peer2.nsmarts.co.kr/tls/ca.crt
+sudo cp ${PWD}/crypto-config/peerOrganizations/nsmarts.co.kr/peers/peer2.nsmarts.co.kr/tls/signcerts/* ${PWD}/crypto-config/peerOrganizations/nsmarts.co.kr/peers/peer2.nsmarts.co.kr/tls/server.crt
+sudo cp ${PWD}/crypto-config/peerOrganizations/nsmarts.co.kr/peers/peer2.nsmarts.co.kr/tls/keystore/* ${PWD}/crypto-config/peerOrganizations/nsmarts.co.kr/peers/peer2.nsmarts.co.kr/tls/server.key
+
+mkdir -p ${PWD}/crypto-config/peerOrganizations/nsmarts.co.kr/msp/tlscacerts
+sudo cp ${PWD}/crypto-config/peerOrganizations/nsmarts.co.kr/peers/peer2.nsmarts.co.kr/tls/tlscacerts/* ${PWD}/crypto-config/peerOrganizations/nsmarts.co.kr/msp/tlscacerts/ca.crt
+
+mkdir -p ${PWD}/crypto-config/peerOrganizations/nsmarts.co.kr/tlsca
+sudo cp ${PWD}/crypto-config/peerOrganizations/nsmarts.co.kr/peers/peer2.nsmarts.co.kr/tls/tlscacerts/* ${PWD}/crypto-config/peerOrganizations/nsmarts.co.kr/tlsca/tlsca.nsmarts.co.kr-cert.pem
+
+mkdir -p ${PWD}/crypto-config/peerOrganizations/nsmarts.co.kr/ca
+sudo cp ${PWD}/crypto-config/peerOrganizations/nsmarts.co.kr/peers/peer2.nsmarts.co.kr/msp/cacerts/* ${PWD}/crypto-config/peerOrganizations/nsmarts.co.kr/ca/ca.nsmarts.co.kr-cert.pem
+
+
 echo "Generating the user msp"
 set -x
 ../bin/fabric-ca-client enroll -u https://user1:user1pw@localhost:7054 --caname ca.nsmarts.co.kr -M ${PWD}/crypto-config/peerOrganizations/nsmarts.co.kr/users/User1@nsmarts.co.kr/msp --tls.certfiles ${PWD}/fabric-ca-server/ca.nsmarts.co.kr/tls-cert.pem

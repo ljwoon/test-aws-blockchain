@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+
 	// "strconv"
 
 	"github.com/hyperledger/fabric/core/chaincode/shim"
@@ -182,31 +183,27 @@ func (s *SmartContract) signSender(APIstub shim.ChaincodeStubInterface, args []s
 // 받은이 서명
 func (s *SmartContract) signReceiver(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
 
-	// fmt.Println("문서 _Id값:" + args)
-
 	if len(args) != 6 {
 		return shim.Error("Incorrect number of arguments. Expecting 4")
 	}
-
-	/*     private data 적용                                                                */
 
 	if args[4] == "61f0e74dc7267eea8406813f" || args[5] == "61f0e74dc7267eea8406813f" {
 		privateContractAsBytes, _ := APIstub.GetPrivateData("vice_kr_private", args[0])
 		privateContract := Contract{}
 		json.Unmarshal(privateContractAsBytes, &privateContract)
-		log.Println(privateContract)
+		fmt.Println(privateContract)
 		privateContract.ReceiverSign = args[1]
 		privateContract.Status = args[2]
 		privateContract.ReceiverHash = args[3]
 		privateContractAsBytes, _ = json.Marshal(privateContract)
 		APIstub.PutPrivateData("vice_kr_private", args[0], privateContractAsBytes)
 		return shim.Success(nil)
-			// 보낸 회사가 Vice이면서 받는 회사가 Vice 일 경우 Vice Nsmarts에 접근 가능한 private data 설치
+		// 보낸 회사가 Vice이면서 받는 회사가 Vice 일 경우 Vice Nsmarts에 접근 가능한 private data 설치
 	} else if args[4] == "6226c36ba782b6cbf556702e" || args[5] == "6226c36ba782b6cbf556702e" {
 		privateContractAsBytes, _ := APIstub.GetPrivateData("vice_private", args[0])
 		privateContract := Contract{}
 		json.Unmarshal(privateContractAsBytes, &privateContract)
-		log.Println(privateContract)
+		fmt.Println(privateContract)
 		privateContract.ReceiverSign = args[1]
 		privateContract.Status = args[2]
 		privateContract.ReceiverHash = args[3]
@@ -218,7 +215,7 @@ func (s *SmartContract) signReceiver(APIstub shim.ChaincodeStubInterface, args [
 		privateContractAsBytes, _ := APIstub.GetPrivateData("nsmarts_private", args[0])
 		privateContract := Contract{}
 		json.Unmarshal(privateContractAsBytes, &privateContract)
-		log.Println(privateContract)
+		fmt.Println(privateContract)
 		privateContract.ReceiverSign = args[1]
 		privateContract.Status = args[2]
 		privateContract.ReceiverHash = args[3]
@@ -226,7 +223,6 @@ func (s *SmartContract) signReceiver(APIstub shim.ChaincodeStubInterface, args [
 		APIstub.PutPrivateData("nsmarts_private", args[0], privateContractAsBytes)
 		return shim.Success(nil)
 	}
-	
 	return shim.Error("Incorrect CompanyId.")
 }
 
@@ -289,7 +285,7 @@ func (s *SmartContract) selectContract(APIstub shim.ChaincodeStubInterface, args
 	//key := args[0]
 	// 로그 남기기
 	fmt.Println("계약서 요청 _Id값:" + args[0])
-	
+
 	if args[1] == "61f0e74dc7267eea8406813f" || args[2] == "61f0e74dc7267eea8406813f" {
 		privateContractAsBytes, _ := APIstub.GetPrivateData("vice_kr_private", args[0])
 		privateContract := Contract{}

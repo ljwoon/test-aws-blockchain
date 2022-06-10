@@ -74,6 +74,8 @@ Organizations:
               Port: 7051
             - Host: peer1.nsmarts.co.kr
               Port: 8051
+            - Host: peer2.nsmarts.co.kr
+              Port: 9051
 
     - &Vice
         # DefaultOrg defines the organization which is used in the sampleconfig
@@ -104,9 +106,9 @@ Organizations:
             # for cross org gossip communication.  Note, this value is only
             # encoded in the genesis block in the Application section context
             - Host: peer0.vice.com
-              Port: 9051
-            - Host: peer1.vice.com
               Port: 10051
+            - Host: peer1.vice.com
+              Port: 11051
 
     - &ViceKR
         # DefaultOrg defines the organization which is used in the sampleconfig
@@ -137,9 +139,9 @@ Organizations:
             # for cross org gossip communication.  Note, this value is only
             # encoded in the genesis block in the Application section context
             - Host: peer0.viceKR.com
-              Port: 11051
-            - Host: peer1.viceKR.com
               Port: 12051
+            - Host: peer1.viceKR.com
+              Port: 13051
 
 ################################################################################
 #

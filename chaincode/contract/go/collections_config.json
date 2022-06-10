@@ -11,13 +11,19 @@
         "policy": "OR('NsmartsMSP.peer','ViceMSP.peer')",
         "requiredPeerCount": 0,
         "maxPeerCount": 3,
-        "blockToLive": 1000000
+        "blockToLive": 1000000,
+        "endorsementPolicy": {
+            "signaturePolicy": "OR('NsmartsMSP.peer, 'ViceMSP.peer')"
+        }
     },
     {
         "name": "nsmarts_private",
         "policy": "OR('NsmartsMSP.peer')",
         "requiredPeerCount": 0,
         "maxPeerCount": 3,
-        "blockToLive": 1000000
+        "blockToLive": 1000000,
+        "endorsementPolicy": {
+            "signaturePolicy": "OR('NsmartsMSP.peer')"
+        }
     }
 ]
