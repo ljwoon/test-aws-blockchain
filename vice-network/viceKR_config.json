@@ -2,7 +2,7 @@
 	"network-configs": {
 		"vice-network": {
 			"name": "vice-network",
-			"profile": "./connection-profile/vice-network.json"
+			"profile": "./connection-profile/viceKR_network.json"
 		}
 	},
 	"license": "Apache-2.0"

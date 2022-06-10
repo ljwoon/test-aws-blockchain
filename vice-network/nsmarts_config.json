@@ -1,0 +1,9 @@
+{
+	"network-configs": {
+		"vice-network": {
+			"name": "vice-network",
+			"profile": "./connection-profile/nsmarts_network.json"
+		}
+	},
+	"license": "Apache-2.0"
+}

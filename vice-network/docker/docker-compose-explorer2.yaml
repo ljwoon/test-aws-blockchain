@@ -12,17 +12,16 @@ networks:
       name: vice-network
 
 services:
-
-  explorerdb.nsmarts.co.kr:
+  explorerdb.vice.com:
     image: hyperledger/explorer-db:latest
-    container_name: explorerdb.nsmarts.co.kr
-    hostname: explorerdb.nsmarts.co.kr
+    container_name: explorerdb.vice.com
+    hostname: explorerdb.vice.com
     environment:
       - DATABASE_DATABASE=fabricexplorer
       - DATABASE_USERNAME=hppoc
       - DATABASE_PASSWORD=password
     healthcheck:
-      test: "pg_isready -h localhost -p 5432 -q -U postgres"
+      test: "pg_isready -h localhost -p 6432 -q -U postgres"
       interval: 30s
       timeout: 10s
       retries: 5
@@ -31,12 +30,12 @@ services:
     networks:
       - byfn
     
-  explorer.nsmarts.co.kr:
+  explorer.vice.com:
     image: hyperledger/explorer:latest
-    container_name: explorer.nsmarts.co.kr
-    hostname: explorer.nsmarts.co.kr
+    container_name: explorer.vice.com
+    hostname: explorer.vice.com
     environment:
-      - DATABASE_HOST=explorerdb.nsmarts.co.kr
+      - DATABASE_HOST=explorerdb.vice.com
       - DATABASE_DATABASE=fabricexplorer
       - DATABASE_USERNAME=hppoc
       - DATABASE_PASSWD=password
@@ -46,16 +45,14 @@ services:
       - LOG_CONSOLE_STDOUT=true
       - DISCOVERY_AS_LOCALHOST=false
     volumes:
-      - ../nsmarts_config.json:/opt/explorer/app/platform/fabric/config.json
+      - ../vice_config.json:/opt/explorer/app/platform/fabric/config.json
       - ../connection-profile:/opt/explorer/app/platform/fabric/connection-profile
       - ../crypto-config:/tmp/crypto
       - ./walletstore:/opt/explorer/wallet
     ports:
-      - 8080:8080
+      - 8090:8090
     depends_on:
-      explorerdb.nsmarts.co.kr:
+      explorerdb.vice.com:
         condition: service_healthy
     networks:
       - byfn
-
-  
