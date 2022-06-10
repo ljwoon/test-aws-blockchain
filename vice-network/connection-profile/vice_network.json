@@ -55,25 +55,25 @@
 			"tlsCACerts": {
 				"path": "/tmp/crypto/peerOrganizations/vice.com/peers/peer0.vice.com/tls/tlscacerts/tls-localhost-8054-ca-vice-com.pem"
 			},
-			"url": "grpcs://peer0.vice.com:9051"
+			"url": "grpcs://peer0.vice.com:10051"
 		},
 		"peer1.vice.com": {
             "tlsCACerts": {
                 "path": "/tmp/crypto/peerOrganizations/vice.com/peers/peer1.vice.com/tls/tlscacerts/tls-localhost-8054-ca-vice-com.pem"
             },
-            "url": "grpcs://peer1.vice.com:10051"
+            "url": "grpcs://peer1.vice.com:11051"
         },
 		"peer0.viceKR.com": {
 			"tlsCACerts": {
 				"path": "/tmp/crypto/peerOrganizations/viceKR.com/peers/peer0.viceKR.com/tls/tlscacerts/tls-localhost-9054-ca-viceKR-com.pem"
 			},
-			"url": "grpcs://peer0.viceKR.com:11051"
+			"url": "grpcs://peer0.viceKR.com:12051"
 		},
 		"peer1.viceKR.com": {
             "tlsCACerts": {
                 "path": "/tmp/crypto/peerOrganizations/viceKR.com/peers/peer1.viceKR.com/tls/tlscacerts/tls-localhost-9054-ca-viceKR-com.pem"
             },
-            "url": "grpcs://peer1.viceKR.com:12051"
+            "url": "grpcs://peer1.viceKR.com:13051"
         }
 	}
 }

@@ -26,7 +26,7 @@ peer channel update -f org4_update_in_envelope.pb -c $CHANNEL_NAME -o orderer.ex
 
 # 다른 터미널 키고 해야한다. 보증정책에 맞는만큼 갯수 필요 내껀 3개 필요.
 
-docker exec -e CORE_PEER_LOCALMSPID="ViceMSP" -e CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/vice.com/peers/peer0.vice.com/tls/ca.crt -e CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/vice.com/users/Admin@vice.com/msp -e CORE_PEER_ADDRESS=peer0.vice.com:9051 -it cli bash
+docker exec -e CORE_PEER_LOCALMSPID="ViceMSP" -e CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/vice.com/peers/peer0.vice.com/tls/ca.crt -e CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/vice.com/users/Admin@vice.com/msp -e CORE_PEER_ADDRESS=peer0.vice.com:10051 -it cli bash
 
 sleep 3
 
@@ -38,7 +38,7 @@ peer channel update -f org4_update_in_envelope.pb -c $CHANNEL_NAME -o orderer.ex
 
 # 다른 터미널 키고 해야한다. 보증정책에 맞는만큼 갯수 필요 내껀 3개 필요.
 
-docker exec -e CORE_PEER_LOCALMSPID="ViceKRMSP" -e CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/viceKR.com/peers/peer0.viceKR.com/tls/ca.crt -e CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/viceKR.com/users/Admin@viceKR.com/msp -e CORE_PEER_ADDRESS=peer0.viceKR.com:11051 -it cli bash
+docker exec -e CORE_PEER_LOCALMSPID="ViceKRMSP" -e CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/viceKR.com/peers/peer0.viceKR.com/tls/ca.crt -e CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/viceKR.com/users/Admin@viceKR.com/msp -e CORE_PEER_ADDRESS=peer0.viceKR.com:12051 -it cli bash
 
 sleep 3
 

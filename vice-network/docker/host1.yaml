@@ -103,10 +103,10 @@ services:
       - byfn
 
   peer2.nsmarts.co.kr:
-    container_name: peer1.nsmarts.co.kr
+    container_name: peer2.nsmarts.co.kr
     extends:
       file:  ../base/docker-compose-base.yaml
-      service: peer1.nsmarts.co.kr
+      service: peer2.nsmarts.co.kr
     environment:
       - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb3:5984
