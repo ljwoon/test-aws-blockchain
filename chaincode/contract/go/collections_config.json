@@ -1,7 +1,21 @@
 [
     {
-        "name": "contractPrivate",
+        "name": "vice_kr_private",
+        "policy": "OR('NsmartsMSP.peer','ViceMSP.peer','ViceKRMSP.peer')",
+        "requiredPeerCount": 0,
+        "maxPeerCount": 3,
+        "blockToLive": 1000000
+    },
+    {
+        "name": "vice_private",
         "policy": "OR('NsmartsMSP.peer','ViceMSP.peer')",
+        "requiredPeerCount": 0,
+        "maxPeerCount": 3,
+        "blockToLive": 1000000
+    },
+    {
+        "name": "nsmarts_private",
+        "policy": "OR('NsmartsMSP.peer')",
         "requiredPeerCount": 0,
         "maxPeerCount": 3,
         "blockToLive": 1000000

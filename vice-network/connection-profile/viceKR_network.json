@@ -8,7 +8,7 @@
 			"password": "exploreradminpw"
 		},
 		"enableAuthentication": true,
-		"organization": "NsmartsMSP",
+		"organization": "ViceKRMSP",
 		"connection": {
 			"timeout": {
 				"peer": {
@@ -34,68 +34,68 @@
 		"NsmartsMSP": {
 			"mspid": "NsmartsMSP",
 			"adminPrivateKey": {
-				"path": "/tmp/crypto/peerOrganizations/nsmarts.co.kr/users/Admin@nsmarts.co.kr/msp/keystore/2e9a809b31dfc4a24c17053d7ed69cb8a13711715336f7edf31738c824c1cc47_sk"
+				"path": "/tmp/crypto/peerOrganizations/nsmarts.co.kr/users/Admin@nsmarts.co.kr/msp/keystore/8ffa578e5f51151e1ae720ab3f43612c410534464e2424ce6e0cba4412c651dd_sk"
 			},
 			"peers": ["peer0.nsmarts.co.kr","peer1.nsmarts.co.kr"],
 			"signedCert": {
-				"path": "/tmp/crypto/peerOrganizations/nsmarts.co.kr/users/Admin@nsmarts.co.kr/msp/signcerts/Admin@nsmarts.co.kr-cert.pem"
+				"path": "/tmp/crypto/peerOrganizations/nsmarts.co.kr/users/Admin@nsmarts.co.kr/msp/signcerts/cert.pem"
 			}
 		},
 		"ViceMSP": {
 			"mspid": "ViceMSP",
 			"adminPrivateKey": {
-				"path": "/tmp/crypto/peerOrganizations/vice.com/users/Admin@vice.com/msp/keystore/e27eb68ac5fdaa3a78d6ad37fb689c1692bc05924c5d93b8b6e2a922966de690_sk"
+				"path": "/tmp/crypto/peerOrganizations/vice.com/users/Admin@vice.com/msp/keystore/bf3566fb051fd4c05643bf2ae493edc88ff5a0f11b2bb10594202b0b12ba5ef7_sk"
 			},
 			"peers": ["peer0.vice.com","peer1.vice.com"],
 			"signedCert": {
-				"path": "/tmp/crypto/peerOrganizations/vice.com/users/Admin@vice.com/msp/signcerts/Admin@vice.com-cert.pem"
+				"path": "/tmp/crypto/peerOrganizations/vice.com/users/Admin@vice.com/msp/signcerts/cert.pem"
 			}
 		},
 		"ViceKRMSP": {
 			"mspid": "ViceKRMSP",
 			"adminPrivateKey": {
-				"path": "/tmp/crypto/peerOrganizations/viceKR.com/users/Admin@viceKR.com/msp/keystore/070963cff45e83d263c38cfd028a211478376b3653aadf3484aaec780dce62e9_sk"
+				"path": "/tmp/crypto/peerOrganizations/viceKR.com/users/Admin@viceKR.com/msp/keystore/b520321deeef984facf369c8a860d5fa2b0f9829d9e8faa7391218bf35cff4e7_sk"
 			},
 			"peers": ["peer0.viceKR.com","peer1.viceKR.com"],
 			"signedCert": {
-				"path": "/tmp/crypto/peerOrganizations/viceKR.com/users/Admin@viceKR.com/msp/signcerts/Admin@viceKR.com-cert.pem"
+				"path": "/tmp/crypto/peerOrganizations/viceKR.com/users/Admin@viceKR.com/msp/signcerts/cert.pem"
 			}
 		}
 	},
 	"peers": {
 		"peer0.nsmarts.co.kr": {
 			"tlsCACerts": {
-				"path": "/tmp/crypto/peerOrganizations/nsmarts.co.kr/peers/peer0.nsmarts.co.kr/tls/ca.crt"
+				"path": "/tmp/crypto/peerOrganizations/nsmarts.co.kr/peers/peer0.nsmarts.co.kr/tls/tlscacerts/tls-localhost-7054-ca-nsmarts-co-kr.pem"
 			},
 			"url": "grpcs://peer0.nsmarts.co.kr:7051"
 		},
 		"peer1.nsmarts.co.kr": {
             "tlsCACerts": {
-                "path": "/tmp/crypto/peerOrganizations/nsmarts.co.kr/peers/peer1.nsmarts.co.kr/tls/ca.crt"
+                "path": "/tmp/crypto/peerOrganizations/nsmarts.co.kr/peers/peer1.nsmarts.co.kr/tls/tlscacerts/tls-localhost-7054-ca-nsmarts-co-kr.pem"
             },
             "url": "grpcs://peer1.nsmarts.co.kr:8051"
         },
 		"peer0.vice.com": {
 			"tlsCACerts": {
-				"path": "/tmp/crypto/peerOrganizations/vice.com/peers/peer0.vice.com/tls/ca.crt"
+				"path": "/tmp/crypto/peerOrganizations/vice.com/peers/peer0.vice.com/tls/tlscacerts/tls-localhost-8054-ca-vice-com.pem"
 			},
 			"url": "grpcs://peer0.vice.com:9051"
 		},
 		"peer1.vice.com": {
             "tlsCACerts": {
-                "path": "/tmp/crypto/peerOrganizations/vice.com/peers/peer1.vice.com/tls/ca.crt"
+                "path": "/tmp/crypto/peerOrganizations/vice.com/peers/peer1.vice.com/tls/tlscacerts/tls-localhost-8054-ca-vice-com.pem"
             },
             "url": "grpcs://peer1.vice.com:10051"
         },
 		"peer0.viceKR.com": {
 			"tlsCACerts": {
-				"path": "/tmp/crypto/peerOrganizations/viceKR.com/peers/peer0.viceKR.com/tls/ca.crt"
+				"path": "/tmp/crypto/peerOrganizations/viceKR.com/peers/peer0.viceKR.com/tls/tlscacerts/tls-localhost-9054-ca-viceKR-com.pem"
 			},
 			"url": "grpcs://peer0.viceKR.com:11051"
 		},
 		"peer1.viceKR.com": {
             "tlsCACerts": {
-                "path": "/tmp/crypto/peerOrganizations/viceKR.com/peers/peer1.viceKR.com/tls/ca.crt"
+                "path": "/tmp/crypto/peerOrganizations/viceKR.com/peers/peer1.viceKR.com/tls/tlscacerts/tls-localhost-9054-ca-viceKR-com.pem"
             },
             "url": "grpcs://peer1.viceKR.com:12051"
         }
