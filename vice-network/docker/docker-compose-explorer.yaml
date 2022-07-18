@@ -49,7 +49,7 @@ services:
       - ../nsmarts_config.json:/opt/explorer/app/platform/fabric/config.json
       - ../connection-profile:/opt/explorer/app/platform/fabric/connection-profile
       - ../crypto-config:/tmp/crypto
-      - ./walletstore:/opt/explorer/wallet
+      - walletstore:/opt/explorer/wallet
     ports:
       - 8080:8080
     depends_on:

@@ -64,7 +64,7 @@ sleep 5
 
 
 echo "mychannel에 체인코드 contract 인스턴스 화"
-docker exec cli peer chaincode instantiate -o orderer.example.com:7050 --tls true --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n contract -v 1.0 -c '{"Args":[]}' -P "AND ('NsmartsMSP.peer','NsmartsMSP.peer')" --collections-config /opt/gopath/src/github.com/chaincode/contract/go/collections_config.json
+docker exec cli peer chaincode instantiate -o orderer.example.com:7050 --tls true --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n contract -v 1.0 -c '{"Args":[]}' -P "AND ('NsmartsMSP.peer','NsmartsMSP.peer')" --collections-config /opt/gopath/src/github.com/chaincode/contract/go/collections_config.json 
 sleep 5
 
 # echo "mychannel 체인코드 contract 인스턴스 화"
@@ -73,7 +73,6 @@ sleep 5
 
 echo "체인코드 contract 호출"
 docker exec cli peer chaincode invoke -o orderer.example.com:7050 --tls true --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n contract --peerAddresses peer0.nsmarts.co.kr:7051 --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/nsmarts.co.kr/peers/peer0.nsmarts.co.kr/tls/ca.crt --peerAddresses peer0.vice.com:10051 --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/vice.com/peers/peer0.vice.com/tls/ca.crt --peerAddresses peer0.viceKR.com:12051 --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/viceKR.com/peers/peer0.viceKR.com/tls/ca.crt -c '{"Args":["queryTest","a"]}'
-
 
 
 # echo "체인코드 contract 호출"
@@ -120,6 +119,7 @@ echo "체인코드 contract 쿼리"
 # from peer1.viceKR
 docker exec -e CORE_PEER_ADDRESS=peer1.viceKR.com:13051 -e CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/viceKR.com/peers/peer1.viceKR.com/tls/ca.crt -e CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/viceKR.com/users/Admin@viceKR.com/msp -e CORE_PEER_LOCALMSPID=ViceKRMSP cli peer chaincode query -n contract -C mychannel -c '{"Args":["queryTest","a"]}'
 sleep 5
+
 
 # # 체인코드 document----------------------------------------------------------------
 
