@@ -1,8 +1,16 @@
 {
 	"network-configs": {
+		"nsmarts-network": {
+			"name": "nsmarts-network",
+			"profile": "./connection-profile/nsmarts_network.json"
+		},
 		"vice-network": {
 			"name": "vice-network",
-			"profile": "./connection-profile/nsmarts_network.json"
+			"profile": "./connection-profile/vice_network.json"
+		},
+		"viceKR-network": {
+			"name": "viceKR-network",
+			"profile": "./connection-profile/viceKR_network.json"
 		}
 	},
 	"license": "Apache-2.0"

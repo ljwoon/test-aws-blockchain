@@ -13,7 +13,7 @@
         "maxPeerCount": 3,
         "blockToLive": 1000000,
         "endorsementPolicy": {
-            "signaturePolicy": "OR('NsmartsMSP.peer, 'ViceMSP.peer')"
+            "signaturePolicy": "AND('NsmartsMSP.peer, 'ViceMSP.peer')"
         }
     },
     {
@@ -23,7 +23,7 @@
         "maxPeerCount": 3,
         "blockToLive": 1000000,
         "endorsementPolicy": {
-            "signaturePolicy": "OR('NsmartsMSP.peer')"
+            "signaturePolicy": "AND('NsmartsMSP.peer','NsmartsMSP.peer')"
         }
     }
 ]

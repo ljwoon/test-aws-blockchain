@@ -383,7 +383,7 @@ Channel: &ChannelDefaults
 ################################################################################
 Profiles:
 
-    ViceKRChannel:
+    MyChannel:
         Consortium: OrgConsortium
         <<: *ChannelDefaults
         Application:
@@ -392,28 +392,6 @@ Profiles:
                 - *Nsmarts
                 - *Vice
                 - *ViceKR
-            Capabilities:
-                <<: *ApplicationCapabilities
-
-    ViceChannel:
-        Consortium: OrgConsortium
-        <<: *ChannelDefaults
-        Application:
-            <<: *ApplicationDefaults
-            Organizations:
-                - *Nsmarts
-                - *Vice
-            Capabilities:
-                <<: *ApplicationCapabilities
-
-    NsmartsChannel:
-        Consortium: OrgConsortium
-        <<: *ChannelDefaults
-        Application:
-            <<: *ApplicationDefaults
-            Organizations:
-                - *Nsmarts
-
             Capabilities:
                 <<: *ApplicationCapabilities
 

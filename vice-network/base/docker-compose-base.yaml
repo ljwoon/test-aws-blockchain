@@ -54,7 +54,7 @@ services:
       - CORE_PEER_CHAINCODEADDRESS=peer1.nsmarts.co.kr:8052
       - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:8052
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.nsmarts.co.kr:8051
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.nsmarts.co.kr:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer2.nsmarts.co.kr:9051
       - CORE_PEER_LOCALMSPID=NsmartsMSP
     volumes:
         - /var/run/docker.sock:/host/var/run/docker.sock

@@ -9,6 +9,9 @@ sudo chmod -R 777 ./crypto-config
 
 export FABRIC_CA_CLIENT_HOME=${PWD}/crypto-config/ordererOrganizations/example.com
 
+sudo chmod -R 777 ./crypto-config
+sudo chmod -R 777 ./fabric-ca-server
+
 set -x
 ../bin/fabric-ca-client enroll -u https://admin:adminpw@localhost:6054 --caname ca.orderer.example.com --tls.certfiles ${PWD}/fabric-ca-server/ca.orderer.example.com/tls-cert.pem
 { set +x; } 2>/dev/null

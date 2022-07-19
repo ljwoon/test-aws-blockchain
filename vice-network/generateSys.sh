@@ -7,17 +7,40 @@ mkdir channel-artifacts
 echo "orderer 채널 생성"
 ../bin/configtxgen -profile SampleMultiNodeEtcdRaft -outputBlock ./channel-artifacts/genesis.block -channelID system-channel
 
-echo "mychannel 채널 생성"
-../bin/configtxgen -profile MyChannel -outputCreateChannelTx ./channel-artifacts/mychannel.tx -channelID mychannel
+# ---------------------------------------------------------------------------------------------------------------
+
+echo "ViceKRChannel 채널 생성"
+../bin/configtxgen -profile ViceKRChannel -outputCreateChannelTx ./channel-artifacts/vicekrchannel.tx -channelID vicekrchannel
 
 echo "org1 앵커피어 생성"
-../bin/configtxgen -profile MyChannel -outputAnchorPeersUpdate ./channel-artifacts/NsmartsMSPanchors.tx -channelID mychannel -asOrg NsmartsMSP
+../bin/configtxgen -profile ViceKRChannel -outputAnchorPeersUpdate ./channel-artifacts/NsmartsMSPanchors_ViceKRChannel.tx -channelID vicekrchannel -asOrg NsmartsMSP
 
 echo "org2 앵커피어 생성"
-../bin/configtxgen -profile MyChannel -outputAnchorPeersUpdate ./channel-artifacts/ViceMSPanchors.tx -channelID mychannel -asOrg ViceMSP
+../bin/configtxgen -profile ViceKRChannel -outputAnchorPeersUpdate ./channel-artifacts/ViceMSPanchors_ViceKRChannel.tx -channelID vicekrchannel -asOrg ViceMSP
 
 echo "org3 앵커피어 생성"
-../bin/configtxgen -profile MyChannel -outputAnchorPeersUpdate ./channel-artifacts/ViceKRMSPanchors.tx -channelID mychannel -asOrg ViceKRMSP
+../bin/configtxgen -profile ViceKRChannel -outputAnchorPeersUpdate ./channel-artifacts/ViceKRMSPanchors_ViceKRChannel.tx -channelID vicekrchannel -asOrg ViceKRMSP
 
-sudo chmod -R 444 ./fabric-ca-server
+# ---------------------------------------------------------------------------------------------------------------
+
+echo "ViceChannel 채널 생성"
+../bin/configtxgen -profile ViceChannel -outputCreateChannelTx ./channel-artifacts/vicechannel.tx -channelID vicechannel
+
+echo "org1 앵커피어 생성"
+../bin/configtxgen -profile ViceChannel -outputAnchorPeersUpdate ./channel-artifacts/NsmartsMSPanchors_ViceChannel.tx -channelID vicechannel -asOrg NsmartsMSP
+
+echo "org2 앵커피어 생성"
+../bin/configtxgen -profile ViceChannel -outputAnchorPeersUpdate ./channel-artifacts/ViceMSPanchors_ViceChannel.tx -channelID vicechannel -asOrg ViceMSP
+
+
+# ---------------------------------------------------------------------------------------------------------------
+
+echo "NsmartsChannel 채널 생성"
+../bin/configtxgen -profile NsmartsChannel -outputCreateChannelTx ./channel-artifacts/nsmartschannel.tx -channelID nsmartschannel
+
+echo "org1 앵커피어 생성"
+../bin/configtxgen -profile NsmartsChannel -outputAnchorPeersUpdate ./channel-artifacts/NsmartsMSPanchors_NsmartsChannel.tx -channelID nsmartschannel -asOrg NsmartsMSP
+
+
 sudo chmod -R 444 ./crypto-config
+sudo chmod -R 444 ./fabric-ca-server
