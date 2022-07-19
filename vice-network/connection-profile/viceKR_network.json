@@ -26,14 +26,23 @@
 		"vicekrchannel": {
 			"peers": {
 				"peer0.nsmarts.co.kr": {},
-				"peer1.nsmarts.co.kr": {},
-				"peer2.nsmarts.co.kr": {},
-				"peer0.vice.com": {},
-				"peer1.vice.com": {},
+                "peer1.nsmarts.co.kr": {},
+                "peer2.nsmarts.co.kr": {},
 				"peer0.viceKR.com": {},
 				"peer1.viceKR.com": {}
 			}
-		}
+		},
+		"vicechannel": {
+            "peers": {
+				"peer0.nsmarts.co.kr": {},
+                "peer1.nsmarts.co.kr": {},
+                "peer2.nsmarts.co.kr": {},
+                "peer0.vice.com": {},
+                "peer1.vice.com": {},
+                "peer0.viceKR.com": {},
+                "peer1.viceKR.com": {}
+            }
+        }
 	},
 	"organizations": {
 		"NsmartsMSP": {
