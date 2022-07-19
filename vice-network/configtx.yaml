@@ -389,6 +389,8 @@ Profiles:
         Application:
             <<: *ApplicationDefaults
             Organizations:
+                - *Nsmarts
+                - *Vice
                 - *ViceKR
             Capabilities:
                 <<: *ApplicationCapabilities
@@ -399,8 +401,8 @@ Profiles:
         Application:
             <<: *ApplicationDefaults
             Organizations:
+                - *Nsmarts
                 - *Vice
-                - *ViceKR
             Capabilities:
                 <<: *ApplicationCapabilities
 
@@ -411,8 +413,7 @@ Profiles:
             <<: *ApplicationDefaults
             Organizations:
                 - *Nsmarts
-                - *Vice
-                - *ViceKR
+
             Capabilities:
                 <<: *ApplicationCapabilities
 

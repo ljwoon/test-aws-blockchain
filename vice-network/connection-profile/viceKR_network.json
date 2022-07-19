@@ -23,7 +23,7 @@
 		}
 	},
 	"channels": {
-		"mychannel": {
+		"vicekrchannel": {
 			"peers": {
 				"peer0.nsmarts.co.kr": {},
 				"peer1.nsmarts.co.kr": {},
