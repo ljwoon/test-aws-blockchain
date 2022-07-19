@@ -4,6 +4,9 @@ echo "Enrolling the CA admin"
 
 mkdir -p crypto-config/ordererOrganizations/example.com
 
+sudo chmod -R 777 ./fabric-ca-server
+sudo chmod -R 777 ./crypto-config
+
 export FABRIC_CA_CLIENT_HOME=${PWD}/crypto-config/ordererOrganizations/example.com
 
 set -x

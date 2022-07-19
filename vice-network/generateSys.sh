@@ -18,3 +18,6 @@ echo "org2 앵커피어 생성"
 
 echo "org3 앵커피어 생성"
 ../bin/configtxgen -profile MyChannel -outputAnchorPeersUpdate ./channel-artifacts/ViceKRMSPanchors.tx -channelID mychannel -asOrg ViceKRMSP
+
+sudo chmod -R 444 ./fabric-ca-server
+sudo chmod -R 444 ./crypto-config
