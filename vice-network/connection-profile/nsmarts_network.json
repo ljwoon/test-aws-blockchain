@@ -23,19 +23,39 @@
 		}
 	},
 	"channels": {
-		"nsmartschannel": {
-			"peers": {
-				"peer0.nsmarts.co.kr": {},
-				"peer1.nsmarts.co.kr": {},
-				"peer2.nsmarts.co.kr": {}
-			}
-		}
-	},
+        "nsmartschannel": {
+            "peers": {
+                "peer0.nsmarts.co.kr": {},
+                "peer1.nsmarts.co.kr": {},
+                "peer2.nsmarts.co.kr": {}
+            }
+        },
+        "vicechannel": {
+            "peers": {
+                "peer0.nsmarts.co.kr": {},
+                "peer1.nsmarts.co.kr": {},
+                "peer2.nsmarts.co.kr": {},
+                "peer0.vice.com": {},
+                "peer1.vice.com": {}
+            }
+        },
+        "vicekrchannel": {
+            "peers": {
+                "peer0.nsmarts.co.kr": {},
+                "peer1.nsmarts.co.kr": {},
+                "peer2.nsmarts.co.kr": {},
+                "peer0.vice.com": {},
+                "peer1.vice.com": {},
+                "peer0.viceKR.com": {},
+                "peer1.viceKR.com": {}
+            }
+        }
+    },
 	"organizations": {
 		"NsmartsMSP": {
 			"mspid": "NsmartsMSP",
 			"adminPrivateKey": {
-				"path": "/tmp/crypto/peerOrganizations/nsmarts.co.kr/users/Admin@nsmarts.co.kr/msp/keystore/3815cb16f554d01114fa25b0d353bf8a91b18b5604e2c45d7e274c7290f2bd2c_sk"
+				"path": "/tmp/crypto/peerOrganizations/nsmarts.co.kr/users/Admin@nsmarts.co.kr/msp/keystore/bb60584c1fd7c475bddb48eee1fa552e0b15c26796cbaf639a5056be9152f09e_sk"
 			},
 			"peers": ["peer0.nsmarts.co.kr","peer1.nsmarts.co.kr","peer2.nsmarts.co.kr"],
 			"signedCert": {
@@ -46,7 +66,7 @@
 		"ViceMSP": {
 			"mspid": "ViceMSP",
 			"adminPrivateKey": {
-				"path": "/tmp/crypto/peerOrganizations/vice.com/users/Admin@vice.com/msp/keystore/b7f49c370b4fd7c370ed67d30bdf2cbfdc3214b85951d89d12721e84d30df454_sk"
+				"path": "/tmp/crypto/peerOrganizations/vice.com/users/Admin@vice.com/msp/keystore/6324338086be080b1323e7ac016042ae4c6b73c8b023afddbd03c1244e9632cc_sk"
 			},
 			"peers": ["peer0.vice.com","peer1.vice.com"],
 			"signedCert": {
@@ -57,7 +77,7 @@
 		"ViceKRMSP": {
 			"mspid": "ViceKRMSP",
 			"adminPrivateKey": {
-				"path": "/tmp/crypto/peerOrganizations/viceKR.com/users/Admin@viceKR.com/msp/keystore/1ab61ce0293f85abcc9d886c9f8679c536e1174cbb956a79380fc2375bf2f08f_sk"
+				"path": "/tmp/crypto/peerOrganizations/viceKR.com/users/Admin@viceKR.com/msp/keystore/a5f8ffc590fa9f666014438cc92a67a5b50b02683f9c7c27a3af5568085d732f_sk"
 			},
 			"peers": ["peer0.viceKR.com","peer1.viceKR.com"],
 			"signedCert": {
@@ -68,7 +88,7 @@
 		"ordererMSP": {
 			"mspid": "ordererMSP",
 			"adminPrivateKey": {
-				"path": "/tmp/crypto/ordererOrganizations/example.com/users/Admin@example.com/msp/keystore/212fd33302f387a9252677ffaffb47d42130cb5282f165ded8c08e8b66cb7dab_sk"
+				"path": "/tmp/crypto/ordererOrganizations/example.com/users/Admin@example.com/msp/keystore/4085d6434a7763cedd1c7cf23aa7c859e0bec43711d4fa834a1c3489219b780d_sk"
 			},
 			"orderers": ["orderer.example.com","orderer2.example.com","orderer3.example.com","orderer4.example.com","orderer5.example.com"],
 			"signedCert": {

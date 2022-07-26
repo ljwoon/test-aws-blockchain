@@ -42,5 +42,5 @@ echo "org1 앵커피어 생성"
 ../bin/configtxgen -profile NsmartsChannel -outputAnchorPeersUpdate ./channel-artifacts/NsmartsMSPanchors_NsmartsChannel.tx -channelID nsmartschannel -asOrg NsmartsMSP
 
 
-sudo chmod -R 444 ./crypto-config
-sudo chmod -R 444 ./fabric-ca-server
+sudo chmod -R 755 ./crypto-config
+sudo chmod -R 755 ./fabric-ca-server

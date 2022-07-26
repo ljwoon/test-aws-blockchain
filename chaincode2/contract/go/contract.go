@@ -20,23 +20,24 @@ type SmartContract struct {
 // Define the car structure, with 16 properties.  Structure tags are used by encoding/json library
 type Contract struct {
 	// Id               string `json:"id"`
-	CompanyId        string `json:"companyId"`
-	Title            string `json:"title"`
-	Description      string `json:"description"`
-	Sender           string `json:"sender"`
-	Receiver         string `json:"receiver"`
-	Date             string `json:"date"`
-	OriginalFileName string `json:"originalFileName"`
-	FileName         string `json:"fileName"`
-	FileSize         string `json:"fileSize"`
-	SaveKey          string `json:"saveKey"`
-	Hash             string `json:"hash"`
-	Status           string `json:"status"`
-	RejectReason     string `json:"rejectReason"`
-	SenderSign       string `json:"senderSign"`
-	ReceiverSign     string `json:"receiverSign"`
-	SenderHash       string `json:"senderHash"`
-	ReceiverHash     string `json:"receiverHash"`
+	CompanyId        	string `json:"companyId"`
+	ReceiverCompanyId 	string
+	Title            	string `json:"title"`
+	Description      	string `json:"description"`
+	Sender           	string `json:"sender"`
+	Receiver         	string `json:"receiver"`
+	Date             	string `json:"date"`
+	OriginalFileName 	string `json:"originalFileName"`
+	FileName         	string `json:"fileName"`
+	FileSize         	string `json:"fileSize"`
+	SaveKey          	string `json:"saveKey"`
+	Hash             	string `json:"hash"`
+	Status           	string `json:"status"`
+	RejectReason     	string `json:"rejectReason"`
+	SenderSign       	string `json:"senderSign"`
+	ReceiverSign     	string `json:"receiverSign"`
+	SenderHash       	string `json:"senderHash"`
+	ReceiverHash     	string `json:"receiverHash"`
 }
 
 /*
@@ -101,7 +102,7 @@ func (s *SmartContract) createContract(APIstub shim.ChaincodeStubInterface, args
 
 	/////////////////////////////////////////////////////////////////////////////////////////
 	/*     private data 적용                                                                */
-	var privateContract = Contract{CompanyId: args[1], Title: args[2], Description: args[3], Sender: args[4], Receiver: args[5], Date: args[6], OriginalFileName: args[7], FileName: args[8], FileSize: args[9], SaveKey: args[10], Hash: args[11], Status: args[12], RejectReason: args[13]}
+	var privateContract = Contract{CompanyId: args[1], ReceiverCompanyId: args[2], Title: args[3], Description: args[4], Sender: args[5], Receiver: args[6], Date: args[7], OriginalFileName: args[8], FileName: args[9], FileSize: args[10], SaveKey: args[11], Hash: args[12], Status: args[13], RejectReason: args[14]}
 
 	privateContractAsBytes, _ := json.Marshal(privateContract)
 

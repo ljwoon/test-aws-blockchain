@@ -53,23 +53,24 @@ type SmartContract struct {
 // Define the car structure, with 16 properties.  Structure tags are used by encoding/json library
 type Contract struct {
 	// Id               string `json:"id"`
-	CompanyId        string `json:"companyId"`
-	Title            string `json:"title"`
-	Description      string `json:"description"`
-	Sender           string `json:"sender"`
-	Receiver         string `json:"receiver"`
-	Date             string `json:"date"`
-	OriginalFileName string `json:"originalFileName"`
-	FileName         string `json:"fileName"`
-	FileSize         string `json:"fileSize"`
-	SaveKey          string `json:"saveKey"`
-	Hash             string `json:"hash"`
-	Status           string `json:"status"`
-	RejectReason     string `json:"rejectReason"`
-	SenderSign       string `json:"senderSign"`
-	ReceiverSign     string `json:"receiverSign"`
-	SenderHash       string `json:"senderHash"`
-	ReceiverHash     string `json:"receiverHash"`
+	CompanyId        	string `json:"companyId"`
+	ReceiverCompanyId 	string
+	Title            	string `json:"title"`
+	Description      	string `json:"description"`
+	Sender           	string `json:"sender"`
+	Receiver         	string `json:"receiver"`
+	Date             	string `json:"date"`
+	OriginalFileName 	string `json:"originalFileName"`
+	FileName         	string `json:"fileName"`
+	FileSize         	string `json:"fileSize"`
+	SaveKey          	string `json:"saveKey"`
+	Hash             	string `json:"hash"`
+	Status           	string `json:"status"`
+	RejectReason     	string `json:"rejectReason"`
+	SenderSign       	string `json:"senderSign"`
+	ReceiverSign     	string `json:"receiverSign"`
+	SenderHash       	string `json:"senderHash"`
+	ReceiverHash     	string `json:"receiverHash"`
 }
 
 /*
@@ -124,11 +125,11 @@ func (s *SmartContract) createContract(APIstub shim.ChaincodeStubInterface, args
 
 	// fmt.Println("문서 _Id값:" + args)
 
-	if len(args) != 14 {
+	if len(args) != 15 {
 		return shim.Error("Incorrect number of arguments. Expecting 14")
 	}
 
-	var contract = Contract{CompanyId: args[1], Title: args[2], Description: args[3], Sender: args[4], Receiver: args[5], Date: args[6], OriginalFileName: args[7], FileName: args[8], FileSize: args[9], SaveKey: args[10], Hash: args[11], Status: args[12], RejectReason: args[13]}
+	var contract = Contract{CompanyId: args[1], Title: args[2], Description: args[3], Sender: args[4], Receiver: args[5], Date: args[6], OriginalFileName: args[7], FileName: args[8], FileSize: args[9], SaveKey: args[10], Hash: args[11], Status: args[12], RejectReason: args[13], ReceiverCompanyId: args[14]}
 
 	// var company = Company{Company_name: args[1], My_name: args[2], Your_name: args[3]}
 
@@ -144,7 +145,7 @@ func (s *SmartContract) signSender(APIstub shim.ChaincodeStubInterface, args []s
 
 	// fmt.Println("문서 _Id값:" + args)
 
-	if len(args) != 4 {
+	if len(args) != 6 {
 		return shim.Error("Incorrect number of arguments. Expecting 4")
 	}
 
@@ -171,7 +172,7 @@ func (s *SmartContract) signReceiver(APIstub shim.ChaincodeStubInterface, args [
 
 	// fmt.Println("문서 _Id값:" + args)
 
-	if len(args) != 4 {
+	if len(args) != 6 {
 		return shim.Error("Incorrect number of arguments. Expecting 4")
 	}
 
@@ -196,7 +197,7 @@ func (s *SmartContract) rejectContract(APIstub shim.ChaincodeStubInterface, args
 
 	// fmt.Println("문서 _Id값:" + args)
 
-	if len(args) != 3 {
+	if len(args) != 5 {
 		return shim.Error("Incorrect number of arguments. Expecting 3")
 	}
 
@@ -217,7 +218,7 @@ func (s *SmartContract) rejectContract(APIstub shim.ChaincodeStubInterface, args
 // 계약서 상세 조회
 func (s *SmartContract) selectContract(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
 	// 인자값이 하나이상이면 에러
-	if len(args) != 1 {
+	if len(args) != 3 {
 		return shim.Error("Incorrect number of arguments. Expecting 1")
 	}
 
