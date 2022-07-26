@@ -17,7 +17,7 @@ type SmartContract struct {
 
 // Define the car structure, with 4 properties.  Structure tags are used by encoding/json library
 type LeaveRequest struct {
-	Id             string `json:"id"`
+	// Id             string `json:"id"`
 	Requestor      string `json:"requestor"`
 	ApproverId     string `json:"approverId"`
 	Approver       string `json:"approver"`

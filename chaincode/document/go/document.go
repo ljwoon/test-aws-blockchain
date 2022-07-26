@@ -18,7 +18,7 @@ type SmartContract struct {
 
 // Define the car structure, with 4 properties.  Structure tags are used by encoding/json library
 type Document struct {
-	Id						string `json:"id"`
+	// Id						string `json:"id"`
 	CompanyId   			string `json:"companyId"`
 	Uploader   				string `json:"uploader"`
 	Title  					string `json:"title"`
