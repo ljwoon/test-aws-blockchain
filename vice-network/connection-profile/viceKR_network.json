@@ -39,7 +39,7 @@
         "NsmartsMSP": {
             "mspid": "NsmartsMSP",
             "adminPrivateKey": {
-                "path": "/tmp/crypto/peerOrganizations/nsmarts.co.kr/users/Admin@nsmarts.co.kr/msp/keystore/ccaf54ff7c26384eec5352f70a8b09477b910e28da9d3c41c0939b11d71a0c1d_sk"
+                "path": "/tmp/crypto/peerOrganizations/nsmarts.co.kr/users/Admin@nsmarts.co.kr/msp/keystore/f3c454c16a10764c890c3628113f5978e71bebee9801203aea9ae5540231c176_sk"
             },
             "peers": [
                 "peer0.nsmarts.co.kr",
@@ -54,7 +54,7 @@
         "ViceMSP": {
             "mspid": "ViceMSP",
             "adminPrivateKey": {
-                "path": "/tmp/crypto/peerOrganizations/vice.com/users/Admin@vice.com/msp/keystore/6f7a692c3da6a1bb7cda61e4a84567ade5da9daaea53329caf1b7a678d0012d6_sk"
+                "path": "/tmp/crypto/peerOrganizations/vice.com/users/Admin@vice.com/msp/keystore/5fbe477a6378b8701007a06d018008708c00ec2c61a504830e33f6219cef7f9f_sk"
             },
             "peers": ["peer0.vice.com", "peer1.vice.com"],
             "signedCert": {
@@ -65,30 +65,13 @@
         "ViceKRMSP": {
             "mspid": "ViceKRMSP",
             "adminPrivateKey": {
-                "path": "/tmp/crypto/peerOrganizations/viceKR.com/users/Admin@viceKR.com/msp/keystore/e6869dafc3ab5535dd4a9d6e5243498d52518e67bb47b7d2fd8121d352453474_sk"
+                "path": "/tmp/crypto/peerOrganizations/viceKR.com/users/Admin@viceKR.com/msp/keystore/184fa442604982f300aab0fb1c628eff0615f29d51c8b370a1fd6d70247e38fd_sk"
             },
             "peers": ["peer0.viceKR.com", "peer1.viceKR.com"],
             "signedCert": {
                 "path": "/tmp/crypto/peerOrganizations/viceKR.com/users/Admin@viceKR.com/msp/signcerts/cert.pem"
             },
             "certificateAuthorities": ["ca.viceKR.com"]
-        },
-        "ordererMSP": {
-            "mspid": "ordererMSP",
-            "adminPrivateKey": {
-                "path": "/tmp/crypto/ordererOrganizations/example.com/users/Admin@example.com/msp/keystore/63a9d25a113faf9b9de00248dd28f8e754de8573a490fc6119a90008ac7f7004_sk"
-            },
-            "orderers": [
-                "orderer.example.com",
-                "orderer2.example.com",
-                "orderer3.example.com",
-                "orderer4.example.com",
-                "orderer5.example.com"
-            ],
-            "signedCert": {
-                "path": "/tmp/crypto/ordererOrganizations/example.com/users/Admin@example.com/msp/signcerts/cert.pem"
-            },
-            "certificateAuthorities": ["ca.orderer.example.com"]
         }
     },
     "peers": {

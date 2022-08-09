@@ -150,10 +150,10 @@ echo "체인코드 contract 쿼리"
 # from peer0.nsmarts
 docker exec cli peer chaincode query -n contract -C vicekrchannel -c '{"Args":["queryTest","a"]}'
 sleep 5
-
+# from peer0.nsmarts
 docker exec cli peer chaincode query -n contract -C vicechannel -c '{"Args":["queryTest","a"]}'
 sleep 5
-
+# from peer0.nsmarts
 docker exec cli peer chaincode query -n contract -C nsmartschannel -c '{"Args":["queryTest","a"]}'
 sleep 5
 
