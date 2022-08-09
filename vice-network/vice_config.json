@@ -1,9 +1,0 @@
-{
-	"network-configs": {
-		"vice-network": {
-			"name": "vice-network",
-			"profile": "./connection-profile/vice_network.json"
-		}
-	},
-	"license": "Apache-2.0"
-}

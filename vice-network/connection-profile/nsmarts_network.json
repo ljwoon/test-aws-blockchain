@@ -55,7 +55,7 @@
 		"NsmartsMSP": {
 			"mspid": "NsmartsMSP",
 			"adminPrivateKey": {
-				"path": "/tmp/crypto/peerOrganizations/nsmarts.co.kr/users/Admin@nsmarts.co.kr/msp/keystore/bb60584c1fd7c475bddb48eee1fa552e0b15c26796cbaf639a5056be9152f09e_sk"
+				"path": "/tmp/crypto/peerOrganizations/nsmarts.co.kr/users/Admin@nsmarts.co.kr/msp/keystore/f3c454c16a10764c890c3628113f5978e71bebee9801203aea9ae5540231c176_sk"
 			},
 			"peers": ["peer0.nsmarts.co.kr","peer1.nsmarts.co.kr","peer2.nsmarts.co.kr"],
 			"signedCert": {
@@ -66,7 +66,7 @@
 		"ViceMSP": {
 			"mspid": "ViceMSP",
 			"adminPrivateKey": {
-				"path": "/tmp/crypto/peerOrganizations/vice.com/users/Admin@vice.com/msp/keystore/6324338086be080b1323e7ac016042ae4c6b73c8b023afddbd03c1244e9632cc_sk"
+				"path": "/tmp/crypto/peerOrganizations/vice.com/users/Admin@vice.com/msp/keystore/5fbe477a6378b8701007a06d018008708c00ec2c61a504830e33f6219cef7f9f_sk"
 			},
 			"peers": ["peer0.vice.com","peer1.vice.com"],
 			"signedCert": {
@@ -77,24 +77,13 @@
 		"ViceKRMSP": {
 			"mspid": "ViceKRMSP",
 			"adminPrivateKey": {
-				"path": "/tmp/crypto/peerOrganizations/viceKR.com/users/Admin@viceKR.com/msp/keystore/a5f8ffc590fa9f666014438cc92a67a5b50b02683f9c7c27a3af5568085d732f_sk"
+				"path": "/tmp/crypto/peerOrganizations/viceKR.com/users/Admin@viceKR.com/msp/keystore/184fa442604982f300aab0fb1c628eff0615f29d51c8b370a1fd6d70247e38fd_sk"
 			},
 			"peers": ["peer0.viceKR.com","peer1.viceKR.com"],
 			"signedCert": {
 				"path": "/tmp/crypto/peerOrganizations/viceKR.com/users/Admin@viceKR.com/msp/signcerts/cert.pem"
 			},
 			"certificateAuthorities": ["ca.viceKR.com"]
-		},
-		"ordererMSP": {
-			"mspid": "ordererMSP",
-			"adminPrivateKey": {
-				"path": "/tmp/crypto/ordererOrganizations/example.com/users/Admin@example.com/msp/keystore/4085d6434a7763cedd1c7cf23aa7c859e0bec43711d4fa834a1c3489219b780d_sk"
-			},
-			"orderers": ["orderer.example.com","orderer2.example.com","orderer3.example.com","orderer4.example.com","orderer5.example.com"],
-			"signedCert": {
-				"path": "/tmp/crypto/ordererOrganizations/example.com/users/Admin@example.com/msp/signcerts/cert.pem"
-			},
-			"certificateAuthorities": ["ca.orderer.example.com"]
 		}
 	},
 	"peers": {
