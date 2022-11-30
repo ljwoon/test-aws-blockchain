@@ -16,7 +16,7 @@ networks:
 
 services:
   
-  ca.nsmarts.co.kr.com:
+  ca.nsmarts.co.kr:
     image: hyperledger/fabric-ca
     environment:
       - FABRIC_CA_SERVER_TLS_ENABLED=true
